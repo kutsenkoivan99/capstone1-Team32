@@ -1,27 +1,17 @@
 package de.openhpi.capstone1.game.model;
 
+import java.util.Observable;
+
 import processing.core.PApplet;
 
-public abstract class Obstacle implements Drawable {
+public abstract class Obstacle extends Observable implements Drawable {
+	protected float angle = 0;  // the rotation angle in degrees 0 ... 360
+	
 
 	protected Coordinate2d location;
 	Coordinate2d velocity;
 	int color = 0;
-	
-	public int getColor() {
-		return color;
-	}
 
-	public void setColor(int color) {
-		this.color = color;
-		System.out.println(this.color);
-	}
-	public void setColor(int r, int g, int b) {
-//		this.color = -((r*256+g)*256 +b);
-//		this.color = (((255<<8)&r<<8)&g<<8)&b;
-		this.color = (((255<<8)|r)<<8|g)<<8|b;
-		System.out.println(this.color);
-	}
 
 	@Override
 	abstract public void draw(PApplet p);
@@ -43,6 +33,30 @@ public abstract class Obstacle implements Drawable {
 		  
 
 	}
+	// getters and setters
+	
+	public float getAngle() {
+		return angle;
+	}
+
+	public void setAngle(float angle) {
+		this.angle = angle;
+	}
+
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
+		System.out.println(this.color);
+	}
+	public void setColor(int r, int g, int b) {
+		this.color = (((255<<8)|r)<<8|g)<<8|b;
+		System.out.println(this.color);
+	}
+
+	
 	public void setVelocity(float x, float y) {
 		velocity.x = x;
 		velocity.y = y;
