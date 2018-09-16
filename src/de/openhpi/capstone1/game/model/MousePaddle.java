@@ -11,7 +11,7 @@ public class MousePaddle extends Rectangle implements Drawable {
 	
 	@Override
 	public void draw(PApplet p) {
-		location.x = p.mouseX - (xSize/2);
+		position.x = p.mouseX - (xSize/2);
 		super.draw(p);
 	}
 

@@ -10,13 +10,11 @@ import processing.core.PApplet;
  * @author walter
  *
  */
-public class PaddleController implements Controller {
-	public static boolean MOUSE_CLICKED = true;
-	public static boolean MOUSE_RELEASED = false;
+public class MousePaddleController implements Controller {
 
 	private MousePaddle mPaddle;
 
-	public PaddleController(MousePaddle mPaddle) {
+	public MousePaddleController(MousePaddle mPaddle) {
 		// TODO Auto-generated constructor stub
 		this.mPaddle = mPaddle;
 	}
@@ -25,8 +23,8 @@ public class PaddleController implements Controller {
 	 * @see de.openhpi.capstone1.game.controller.Controller#handleEvent()
 	 */
 	@Override
-	public void handleEvent(PApplet p, boolean status) {
-		if (status == MOUSE_CLICKED) {
+	public void handleEvent(PApplet p) {
+		if (p.mousePressed) {
 			if (p.mouseButton == p.LEFT) {
 				mPaddle.setAngle(10f);
 			  } else if (p.mouseButton == p.RIGHT) {
