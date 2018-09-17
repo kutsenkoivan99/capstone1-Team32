@@ -7,10 +7,10 @@ public class Rectangle extends Obstacle implements Drawable {
 	public float ySize;
 	public float xSize;
 	public Rectangle(float x, float y, float xSize, float ySize){
-		position= new Coordinate2d(x,y);
+		position= new Vector2d(x,y);
 		this.xSize=xSize;
 		this.ySize = ySize;
-		velocity= new Coordinate2d(0f,0f);
+		velocity= new Vector2d(0f,0f);
 	}
 	@Override
 	public void draw(PApplet p) {
@@ -36,8 +36,8 @@ public class Rectangle extends Obstacle implements Drawable {
 				  position.y= yEnd+(ySize/2);
 			}
 	}
-	public Coordinate2d getCenter() {
-		return Coordinate2d.add(position, xSize/2, ySize/2);
+	public Vector2d getCenter() {
+		return Vector2d.add(position, xSize/2, ySize/2);
 	}
 
 }

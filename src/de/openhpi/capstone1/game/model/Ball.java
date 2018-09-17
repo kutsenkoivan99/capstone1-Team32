@@ -6,9 +6,9 @@ public class Ball extends Obstacle implements Drawable {
 	public float radius;
 	
 	public Ball(float x, float y, float radius){
-		position= new Coordinate2d(x,y);
+		position= new Vector2d(x,y);
 		this.radius=radius;
-		velocity= new Coordinate2d(0f,0f);
+		velocity= new Vector2d(0f,0f);
 	}
 
 	@Override
@@ -49,18 +49,18 @@ public class Ball extends Obstacle implements Drawable {
 	void checkCollision(Ball other) {
 
 	    // Get distances between the balls components
-	    Coordinate2d distanceVect = Coordinate2d.sub(other.position, position);
+	    Vector2d distanceVect = Vector2d.sub(other.position, position);
 
 	    // Calculate magnitude of the vector separating the balls
-	    float distanceVectMag = distanceVect.mag();
+	    float distanceVectMag = distanceVect.length();
 
 	    // Minimum distance before they are touching
 	    float minDistance = radius + other.radius;
 
 	    if (distanceVectMag < minDistance) {
 	      float distanceCorrection = (minDistance-distanceVectMag)/2.0f;
-	      Coordinate2d d = distanceVect.copy();
-	      Coordinate2d correctionVector = d.normalize().mult(distanceCorrection);
+	      Vector2d d = distanceVect.copy();
+	      Vector2d correctionVector = d.normalize().mult(distanceCorrection);
 	      other.position.add(correctionVector);
 	      position.sub(correctionVector);
 
@@ -72,8 +72,8 @@ public class Ball extends Obstacle implements Drawable {
 
 	      /* bTemp will hold rotated ball positions. You 
 	       just need to worry about bTemp[1] position*/
-	      Coordinate2d[] bTemp = {
-	        new Coordinate2d(), new Coordinate2d()
+	      Vector2d[] bTemp = {
+	        new Vector2d(), new Vector2d()
 	      };
 
 	      /* this ball's position is relative to the other
@@ -86,8 +86,8 @@ public class Ball extends Obstacle implements Drawable {
 	      bTemp[1].y  = cosine * distanceVect.y - sine * distanceVect.x;
 
 	      // rotate Temporary velocities
-	      Coordinate2d[] vTemp = {
-	        new Coordinate2d(), new Coordinate2d()
+	      Vector2d[] vTemp = {
+	        new Vector2d(), new Vector2d()
 	      };
 
 	      vTemp[0].x  = cosine * velocity.x + sine * velocity.y;
@@ -98,8 +98,8 @@ public class Ball extends Obstacle implements Drawable {
 	      /* Now that velocities are rotated, you can use 1D
 	       conservation of momentum equations to calculate 
 	       the final velocity along the x-axis. */
-	      Coordinate2d[] vFinal = {  
-	        new Coordinate2d(), new Coordinate2d()
+	      Vector2d[] vFinal = {  
+	        new Vector2d(), new Vector2d()
 	      };
 
 	      // final rotated velocity for b[0]
@@ -118,8 +118,8 @@ public class Ball extends Obstacle implements Drawable {
 	       Reverse signs in trig expressions to rotate 
 	       in the opposite direction */
 	      // rotate balls
-	      Coordinate2d[] bFinal = { 
-	        new Coordinate2d(), new Coordinate2d()
+	      Vector2d[] bFinal = { 
+	        new Vector2d(), new Vector2d()
 	      };
 
 	      bFinal[0].x = cosine * bTemp[0].x - sine * bTemp[0].y;
@@ -140,5 +140,11 @@ public class Ball extends Obstacle implements Drawable {
 	      other.velocity.y = cosine * vFinal[1].y + sine * vFinal[1].x;
 	    }
 	  }
+
+	@Override
+	public Vector2d getCenter() {
+		// TODO Auto-generated method stub
+		return position;
+	}
 
 }

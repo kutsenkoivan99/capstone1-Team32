@@ -10,12 +10,11 @@ public abstract class Obstacle extends Observable implements Drawable {
 	protected float angle = 0;  // the rotation angle in degrees 0 ... 360
 	
 
-	protected Coordinate2d position;
-	Coordinate2d velocity;
-	int color = 0;
-	DetectionStrategy detectionStrategy = null;
-
-	ResolutionStrategy resolutionStrategy = null;
+	protected Vector2d position;
+	protected Vector2d velocity;
+	protected int color = 0;
+	protected DetectionStrategy detectionStrategy = null;
+	protected ResolutionStrategy resolutionStrategy = null;
 
 	@Override
 	abstract public void draw(PApplet p);
@@ -29,7 +28,7 @@ public abstract class Obstacle extends Observable implements Drawable {
 		position.y +=y;
 	}
 
-	public void translate(Coordinate2d vector) {
+	public void translate(Vector2d vector) {
 		position.x +=vector.x;
 		position.y +=vector.y;
 	}
@@ -37,13 +36,19 @@ public abstract class Obstacle extends Observable implements Drawable {
 	
 	abstract public void wrap(float xStart, float xEnd, float yStart, float yEnd);
 	
-	public boolean dedectAndHandleCollision(Ball ball) {
+	public boolean dedectAndHandleCollision(Drawable drawable) {
 		boolean hasCollision = false ;
-		if (detectionStrategy != null) {
-			hasCollision = detectionStrategy.detectCollision(this, ball);
-		}
-		if ((resolutionStrategy != null) && hasCollision ) {
-			resolutionStrategy.handleCollision(this, ball);
+		if (drawable instanceof Ball) {
+			Ball ball = (Ball) drawable;
+			if (detectionStrategy != null) {
+				hasCollision = detectionStrategy.detectCollision(this, ball);
+			}
+			if ((resolutionStrategy != null) && hasCollision ) {
+				resolutionStrategy.handleCollision(this, ball);
+			}
+			
+		} else {
+			System.out.println("dedectAndHandleCollision can not handle the type: "+ drawable.getClass().getName());
 		}
 		return hasCollision;
 	}
@@ -76,16 +81,16 @@ public abstract class Obstacle extends Observable implements Drawable {
 		velocity.x = x;
 		velocity.y = y;
 	}
-	public void setVelocity(Coordinate2d dist) {
+	public void setVelocity(Vector2d dist) {
 		velocity.x = dist.x;
 		velocity.y = dist.y;
 	}
 
-	public Coordinate2d getPosition() {
+	public Vector2d getPosition() {
 		return position;
 	}
 
-	public void setPosition(Coordinate2d location) {
+	public void setPosition(Vector2d location) {
 		this.position = location;
 	}
 
@@ -105,7 +110,7 @@ public abstract class Obstacle extends Observable implements Drawable {
 		this.resolutionStrategy = resolutionStrategy;
 	}
 
-	public Coordinate2d getVelocity() {
+	public Vector2d getVelocity() {
 		return velocity;
 	}
 

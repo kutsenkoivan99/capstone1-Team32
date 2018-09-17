@@ -1,7 +1,7 @@
 package de.openhpi.capstone1.game.model.strategy;
 
 import de.openhpi.capstone1.game.model.Ball;
-import de.openhpi.capstone1.game.model.Coordinate2d;
+import de.openhpi.capstone1.game.model.Vector2d;
 import de.openhpi.capstone1.game.model.Obstacle;
 import de.openhpi.capstone1.game.model.Rectangle;
 
@@ -11,7 +11,7 @@ public class RectRotateAndNearest implements DetectionStrategy {
 	public boolean detectCollision(Obstacle obs, Ball ball) {
 		Rectangle rect = (Rectangle) obs;
 		// change Coordinate system to get the center of the rectangle as Origin 0,0
-		Coordinate2d transformedBallPos = Coordinate2d.sub(ball.getPosition(), rect.getCenter());
+		Vector2d transformedBallPos = Vector2d.sub(ball.getPosition(), rect.getCenter());
 		// check if rect rotated
 		float angle = rect.getAngle();
 		if (angle !=0.0f) {
