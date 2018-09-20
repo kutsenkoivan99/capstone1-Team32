@@ -31,9 +31,9 @@ public class KeyboardPaddleController implements Controller {
 			  } else if (p.key == 'f') {
 				  paddle.setAngle(-10f);
 			  } else if (p.key == 's'){ 
-				  paddle.translate(-10f,0);
+				  paddle.translate(-20f,0);
 			  } else if (p.key == 'd'){ 
-				  paddle.translate(10f,0);
+				  paddle.translate(20f,0);
 			  }
 		} else {
 			paddle.setAngle(0f);

@@ -8,53 +8,54 @@ import de.openhpi.capstone1.game.model.strategy.PlayGroundResolutionStrategy;
 import de.openhpi.capstone1.game.model.strategy.RectReflect;
 import de.openhpi.capstone1.game.model.strategy.RectRotateAndNearest;
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class TheApp extends PApplet {
-	int c = color(100, 100, 200);
-	float x = 100;
-	float y = 150;
-	float speed = 1;
-	Rectangle rect1 = new Rectangle(80.0f, 120f, 40f, 10f);
-	Rectangle rect2 = new Rectangle(300.0f, 250f, 60f, 10f);
-	Ball ball = new Ball(100f, 100f, 10f);
+	final int PLAYGROUND_X_SIZE = 500;
+	final int GAME_Y_SIZE = 500;
+	final int CONTROL_X_SIZE = 300;
+
+	Ball ball = new Ball(PLAYGROUND_X_SIZE/2, 100f, 10f);
 	MousePaddle mPaddle = new MousePaddle(200f, 390f, 40f, 3f);
-	Rectangle kPaddle = new Rectangle(200f, 10f, 40f, 3f);
-	Rectangle topBorder = new Rectangle(0f, 0f, 400, 2);
+	Rectangle kPaddleTop = new Rectangle(PLAYGROUND_X_SIZE/2-20, 10f, 40f, 3f);
+	Rectangle kPaddleBottom = new Rectangle(PLAYGROUND_X_SIZE/2-20, GAME_Y_SIZE -10, 40f, 3f);
 	private MousePaddleController mPaddleController;
 	private KeyboardPaddleController kPaddleController;
-	PlayGround playGround = new PlayGround(0f,0f,400f,400f);
+	PlayGround playGround = new PlayGround(0f,0f,PLAYGROUND_X_SIZE,GAME_Y_SIZE);
+	PFont font;
+	
 
 	@Override
 	public void settings() {
-		size(410, 410);
+		size(PLAYGROUND_X_SIZE+CONTROL_X_SIZE+2, GAME_Y_SIZE+4);
 	}
 
 	@Override
 	public void setup() { // setup() runs once
 		frameRate(60);
 		mPaddleController = new MousePaddleController(mPaddle);
-		kPaddleController = new KeyboardPaddleController(kPaddle);
-		rect1.setVelocity(1f, 1f);
-		rect1.setColor(200, 0, 0);
-		rect1.setAngle(46f);
-		rect1.setDetectionStrategy(new RectRotateAndNearest());
-		rect1.setResolutionStrategy(new RectReflect());
-		System.out.println(c);
-		rect2.setVelocity(1f, 1f);
-		rect2.setColor(0, 0, 200);
-		rect2.setDetectionStrategy(new RectRotateAndNearest());
-		rect2.setResolutionStrategy(new RectReflect());
-		ball.setVelocity(0f, 3f);
+		kPaddleController = new KeyboardPaddleController(kPaddleTop);
+		kPaddleController = new KeyboardPaddleController(kPaddleBottom);
+		
 		mPaddle.setColor(255, 255, 0);
 		mPaddle.setDetectionStrategy(new RectRotateAndNearest());
 		mPaddle.setResolutionStrategy(new RectReflect());
-		kPaddle.setDetectionStrategy(new RectRotateAndNearest());
-		kPaddle.setResolutionStrategy(new RectReflect());
-		topBorder.setColor(255, 0, 0);
+		kPaddleTop.setDetectionStrategy(new RectRotateAndNearest());
+		kPaddleTop.setResolutionStrategy(new RectReflect());
+		kPaddleBottom.setDetectionStrategy(new RectRotateAndNearest());
+		kPaddleBottom.setResolutionStrategy(new RectReflect());
+		
 		ball.setColor(0, 255, 255);
+		ball.setVelocity(0f, 2f);
+
         playGround.setColor(200, 200, 200);
         playGround.setDetectionStrategy(new PlayGroundDetectStrategy());
         playGround.setResolutionStrategy(new PlayGroundResolutionStrategy());
+        
+        // Create the font
+        printArray(PFont.list());
+        font = createFont("SansSerif.plain", 24);
+        textFont(font);
 	}
 
 	@Override
@@ -68,22 +69,22 @@ public class TheApp extends PApplet {
 		ball.move();
 	}
 	void handleCollision() {
-		rect1.dedectAndHandleCollision(ball);
-		rect2.dedectAndHandleCollision(ball);
-		mPaddle.dedectAndHandleCollision(ball);
-		kPaddle.dedectAndHandleCollision(ball);
+		/* mPaddle.dedectAndHandleCollision(ball);*/
+		kPaddleTop.dedectAndHandleCollision(ball);
+		kPaddleBottom.dedectAndHandleCollision(ball);
 		playGround.dedectAndHandleCollision(ball);
 	}
 
 	void display() {
 		background(255);
 		playGround.draw(this);
-		rect1.draw(this);
-		rect2.draw(this);
-		mPaddle.draw(this);
-		kPaddle.draw(this);
+		/*  mPaddle.draw(this); */
+		kPaddleTop.draw(this);
+		kPaddleBottom.draw(this);
 		ball.draw(this);
-		topBorder.draw(this);
+		fill(200,200,200);
+		rect(PLAYGROUND_X_SIZE, 0, CONTROL_X_SIZE, GAME_Y_SIZE);
+		text("Control-Area", 300, 300);
 
 	}
 
