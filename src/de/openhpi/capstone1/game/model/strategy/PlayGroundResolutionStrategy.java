@@ -73,6 +73,7 @@ public class PlayGroundResolutionStrategy implements ResolutionStrategy {
 
 	private void handleKill(Ball ball) {
 		ball.setVisible(false);
+		ball.setVelocity(0, 0);
 		
 	}
 

@@ -3,6 +3,8 @@ package de.openhpi.capstone1.game.starter;
 import de.openhpi.capstone1.game.controller.KeyboardPaddleController;
 import de.openhpi.capstone1.game.controller.MousePaddleController;
 import de.openhpi.capstone1.game.model.*;
+import de.openhpi.capstone1.game.model.strategy.PlayGroundDetectStrategy;
+import de.openhpi.capstone1.game.model.strategy.PlayGroundResolutionStrategy;
 import de.openhpi.capstone1.game.model.strategy.RectReflect;
 import de.openhpi.capstone1.game.model.strategy.RectRotateAndNearest;
 import processing.core.PApplet;
@@ -20,11 +22,11 @@ public class TheApp extends PApplet {
 	Rectangle topBorder = new Rectangle(0f, 0f, 400, 2);
 	private MousePaddleController mPaddleController;
 	private KeyboardPaddleController kPaddleController;
-	AlingedFigures playGround = new PlayGround(0f,0f,400f,400f);
+	PlayGround playGround = new PlayGround(0f,0f,400f,400f);
 
 	@Override
 	public void settings() {
-		size(400, 400);
+		size(410, 410);
 	}
 
 	@Override
@@ -51,6 +53,8 @@ public class TheApp extends PApplet {
 		topBorder.setColor(255, 0, 0);
 		ball.setColor(0, 255, 255);
         playGround.setColor(200, 200, 200);
+        playGround.setDetectionStrategy(new PlayGroundDetectStrategy());
+        playGround.setResolutionStrategy(new PlayGroundResolutionStrategy());
 	}
 
 	@Override
@@ -61,16 +65,14 @@ public class TheApp extends PApplet {
 	}
 
 	void move() {
-//		rect1.move();
-//		rect2.move();
 		ball.move();
-		ball.bounce(0f, 400f, 0f, 400f);
 	}
 	void handleCollision() {
 		rect1.dedectAndHandleCollision(ball);
 		rect2.dedectAndHandleCollision(ball);
 		mPaddle.dedectAndHandleCollision(ball);
 		kPaddle.dedectAndHandleCollision(ball);
+		playGround.dedectAndHandleCollision(ball);
 	}
 
 	void display() {

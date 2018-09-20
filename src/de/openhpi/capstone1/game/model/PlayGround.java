@@ -31,22 +31,26 @@ public class PlayGround extends AlingedFigures {
 	}
 	@Override
 	public void draw(PApplet p) {
+		  p.noStroke();
 		  p.fill(color);
 		  p.rect(position.x,position.y,xSize,ySize);
-		  int c = (borderMap.get(BORDER_LOC.TOP)== BORDER_TYPE.KILL)?p.color(255,0,0):p.color(0);
-		  p.fill(c);
+		  
+		  //p.noStroke();
+		  int c = (borderMap.get(BORDER_LOC.TOP)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
+		  p.stroke(c);
 		  p.line(position.x, position.y, position.x+xSize, position.y);
 		  
-		  //c = (borderMap.get(BORDER_LOC.BOTTOM)== BORDER_TYPE.KILL)?p.color(255,0,0):p.color(100);
-		  //p.fill(c);
-		  p.line(position.x, position.y+ySize-4, position.x+xSize-1, position.y+ySize-4);
+		  c = (borderMap.get(BORDER_LOC.BOTTOM)== BORDER_TYPE.KILL)?p.color(255,0,0):p.color(100);
+		  p.stroke(c);
+		  p.line(position.x, position.y+ySize, position.x+xSize, position.y+ySize);
 		  
 		  c = (borderMap.get(BORDER_LOC.RIGHT)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
-		  p.fill(c);
+		  p.stroke(c);
 		  p.line(position.x+xSize-1, position.y, position.x+xSize-1, position.y+ySize-1);
 		  c = (borderMap.get(BORDER_LOC.LEFT)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
-		  p.fill(c);
+		  p.stroke(c);
 		  p.line(position.x, position.y, position.x, position.y+ySize-1);
+		  p.stroke(0);
 	}
 
 
