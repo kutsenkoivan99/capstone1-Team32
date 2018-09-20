@@ -36,7 +36,7 @@ public class RectReflect implements ResolutionStrategy {
 	   float dx = closestX - cx;
 	   float dy = closestY - cy;
 
-	   return dx < dy;
+	   return (dx*dx) < (dy*dy);
 	}
 
 }
