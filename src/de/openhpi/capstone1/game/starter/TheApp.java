@@ -17,8 +17,10 @@ public class TheApp extends PApplet {
 	Ball ball = new Ball(100f, 100f, 10f);
 	MousePaddle mPaddle = new MousePaddle(200f, 390f, 40f, 3f);
 	Rectangle kPaddle = new Rectangle(200f, 10f, 40f, 3f);
+	Rectangle topBorder = new Rectangle(0f, 0f, 400, 2);
 	private MousePaddleController mPaddleController;
 	private KeyboardPaddleController kPaddleController;
+	AlingedFigures playGround = new PlayGround(0f,0f,400f,400f);
 
 	@Override
 	public void settings() {
@@ -46,9 +48,9 @@ public class TheApp extends PApplet {
 		mPaddle.setResolutionStrategy(new RectReflect());
 		kPaddle.setDetectionStrategy(new RectRotateAndNearest());
 		kPaddle.setResolutionStrategy(new RectReflect());
-		
+		topBorder.setColor(255, 0, 0);
 		ball.setColor(0, 255, 255);
-
+        playGround.setColor(200, 200, 200);
 	}
 
 	@Override
@@ -73,11 +75,13 @@ public class TheApp extends PApplet {
 
 	void display() {
 		background(255);
+		playGround.draw(this);
 		rect1.draw(this);
 		rect2.draw(this);
 		mPaddle.draw(this);
 		kPaddle.draw(this);
 		ball.draw(this);
+		topBorder.draw(this);
 
 	}
 
