@@ -11,7 +11,7 @@ import processing.core.PApplet;
  * @author walter
  *
  */
-public class KeyboardPaddleController implements Controller {
+public class KeyboardPaddleController implements PAppletController {
 
 	private Rectangle paddle;
 
