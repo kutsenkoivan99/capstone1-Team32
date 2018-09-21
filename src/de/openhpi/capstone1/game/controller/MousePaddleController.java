@@ -10,7 +10,7 @@ import processing.core.PApplet;
  * @author walter
  *
  */
-public class MousePaddleController implements Controller {
+public class MousePaddleController implements PAppletController {
 
 	private MousePaddle mPaddle;
 

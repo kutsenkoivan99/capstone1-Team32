@@ -1,5 +1,6 @@
 package de.openhpi.capstone1.game.starter;
 
+import de.openhpi.capstone1.game.controller.KeyboardController;
 import de.openhpi.capstone1.game.controller.KeyboardPaddleController;
 import de.openhpi.capstone1.game.controller.MousePaddleController;
 import de.openhpi.capstone1.game.model.*;
@@ -15,12 +16,18 @@ public class TheApp extends PApplet {
 	final int GAME_Y_SIZE = 500;
 	final int CONTROL_X_SIZE = 300;
 
-	Ball ball = new Ball(PLAYGROUND_X_SIZE/2, 100f, 10f);
-	MousePaddle mPaddle = new MousePaddle(200f, 390f, 40f, 3f);
-	Rectangle kPaddleTop = new Rectangle(PLAYGROUND_X_SIZE/2-20, 10f, 40f, 3f);
-	Rectangle kPaddleBottom = new Rectangle(PLAYGROUND_X_SIZE/2-20, GAME_Y_SIZE -10, 40f, 3f);
+	
+	KeyboardController kController = new KeyboardController();
+	char[] topKeys = {'k','l','ö','ä','p','o'};
+	KeyboardPaddle kPaddleTop = new KeyboardPaddle(PLAYGROUND_X_SIZE/2-20, 10f, 40f, 3f, topKeys,kController );
+	char[] bottomKeys = {'a','s','d','f','w','e'};
+	KeyboardPaddle kPaddleBottom = new KeyboardPaddle(PLAYGROUND_X_SIZE/2-20, GAME_Y_SIZE -10, 40f, 3f, bottomKeys,kController );
+	char[] restartKey = {'b'};
+	PongBall ball = new PongBall(PLAYGROUND_X_SIZE/2, 100f, 10f, restartKey, kController);
+	
 	private MousePaddleController mPaddleController;
-	private KeyboardPaddleController kPaddleController;
+	MousePaddle mPaddle = new MousePaddle(200f, 390f, 40f, 3f);
+	
 	PlayGround playGround = new PlayGround(0f,0f,PLAYGROUND_X_SIZE,GAME_Y_SIZE);
 	PFont font;
 	
@@ -34,8 +41,8 @@ public class TheApp extends PApplet {
 	public void setup() { // setup() runs once
 		frameRate(60);
 		mPaddleController = new MousePaddleController(mPaddle);
-		kPaddleController = new KeyboardPaddleController(kPaddleTop);
-		kPaddleController = new KeyboardPaddleController(kPaddleBottom);
+//		kPaddleController = new KeyboardPaddleController(kPaddleTop);
+//		kPaddleController = new KeyboardPaddleController(kPaddleBottom);
 		
 		mPaddle.setColor(255, 255, 0);
 		mPaddle.setDetectionStrategy(new RectRotateAndNearest());
@@ -103,12 +110,12 @@ public class TheApp extends PApplet {
 	@Override
 	public void keyPressed() {
 		// System.out.println("MousePressed = " + mousePressed);
-		kPaddleController.handleEvent(this);
+		kController.handleEvent(this);
 	}
 
 	@Override
 	public void keyReleased() {
-		kPaddleController.handleEvent(this);
+		kController.handleEvent(this);
 	}
 
 }
