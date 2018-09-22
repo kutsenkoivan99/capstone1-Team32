@@ -12,13 +12,28 @@ public class Counter extends AlingedFigures implements Observer {
 	int textSize = 32;
 	public float ySize;
 	public float xSize;
+	private BORDER_LOC edge;
 
-	public Counter(float xpos, float ypos, float xSize, float ySize, String label) {
+	public Counter(float xpos, float ypos, float xSize, float ySize, BORDER_LOC edge) {
 		position = new Vector2d(xpos, ypos);
 		this.xSize = xSize;
 		this.ySize = ySize;
-		this.label = label;
 		this.setColor(255);
+		this.edge = edge;
+		switch (edge) {
+		case TOP:
+			label = "Bottom";
+			break;
+		case BOTTOM:
+			label = "Top";
+			break;
+		case RIGHT:
+			label = "Right";
+			break;
+		case LEFT:
+			label = "Left";
+			break;
+		}
 	}
 
 	/*
@@ -39,17 +54,20 @@ public class Counter extends AlingedFigures implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// handle increase, decrease and reset of counter
-		CounterController.CounterInfo counterInfo = (CounterController.CounterInfo) arg1;
-		switch (counterInfo.operation) {
-		case INCREASE:
-			this.value += counterInfo.value;
-			break;
-		case DECREASE:
-			this.value -= counterInfo.value;
-			break;
-		case RESET:
-			this.value = 0;
-			break;
+		CounterController.CounterEvent counterInfo = (CounterController.CounterEvent) arg1;
+		if (counterInfo.edge == edge) {
+
+			switch (counterInfo.operation) {
+			case INCREASE:
+				this.value += counterInfo.value;
+				break;
+			case DECREASE:
+				this.value -= counterInfo.value;
+				break;
+			case RESET:
+				this.value = 0;
+				break;
+			}
 		}
 
 	}
@@ -66,9 +84,10 @@ public class Counter extends AlingedFigures implements Observer {
 		p.rect(position.x, position.y, xSize, ySize);
 		p.fill(0);
 		p.textSize(textSize);
-		p.text(label + "", position.x + 5, position.y + 10 + textSize);
-		p.line(position.x, position.y +textSize+20, position.x+xSize, position.y +textSize+20);
-		p.text(value + "", position.x + 5, position.y + 20 + (textSize*2));
+		p.text(label, position.x + 5, position.y  + textSize);
+		p.text("Player" , position.x + 5, position.y + (textSize*2));
+		p.line(position.x, position.y + (textSize*2) + 10, position.x + xSize, position.y + (textSize*2) + 10);
+		p.text(value + "", position.x + 5, position.y + 10 + (textSize * 3));
 	}
 
 }

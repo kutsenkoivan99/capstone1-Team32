@@ -31,7 +31,7 @@ public class KeyboardPaddle extends Rectangle implements Drawable, Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		KeyboardController.KeyInfo keyInfo = (KeyboardController.KeyInfo)arg;
+		KeyboardController.KeyEvent keyInfo = (KeyboardController.KeyEvent)arg;
 		if (keyInfo.pressed) {
 			if (keyInfo.key == keyMap[LEFT_FAST]) {
 				this.translate(-40,0);

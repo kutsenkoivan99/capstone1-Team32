@@ -1,9 +1,11 @@
 package de.openhpi.capstone1.game.starter;
 
+import de.openhpi.capstone1.game.controller.CounterController;
 import de.openhpi.capstone1.game.controller.KeyboardController;
 import de.openhpi.capstone1.game.controller.KeyboardPaddleController;
 import de.openhpi.capstone1.game.controller.MousePaddleController;
 import de.openhpi.capstone1.game.model.*;
+import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.strategy.PlayGroundDetectStrategy;
 import de.openhpi.capstone1.game.model.strategy.PlayGroundResolutionStrategy;
 import de.openhpi.capstone1.game.model.strategy.RectReflect;
@@ -30,8 +32,10 @@ public class TheApp extends PApplet {
 	
 	PlayGround playGround = new PlayGround(0f,0f,PLAYGROUND_X_SIZE,GAME_Y_SIZE);
 	ControlArea  controlArea = new ControlArea(PLAYGROUND_X_SIZE+2,0f, CONTROL_X_SIZE, GAME_Y_SIZE);
-	Counter counter1 = new Counter(10f,20f,120,120,"Player 1");
-	Counter counter2 = new Counter(150f,20f,120,120,"Player 2");
+	Counter counterTop = new Counter(10f,20f,120,120,BORDER_LOC.TOP);
+	Counter counterBottom = new Counter(150f,20f,120,120,BORDER_LOC.BOTTOM);
+	CounterController cController = new CounterController();
+
 	PFont font;
 	
 
@@ -61,11 +65,14 @@ public class TheApp extends PApplet {
         playGround.setColor(200, 200, 200);
         playGround.setDetectionStrategy(new PlayGroundDetectStrategy());
         playGround.setResolutionStrategy(new PlayGroundResolutionStrategy());
+        playGround.addObserver(cController);
         
         controlArea.setColor(0,200,200);
-        controlArea.addChild(counter1);
-        controlArea.addChild(counter2);
+        controlArea.addChild(counterTop);
+        controlArea.addChild(counterBottom);
         
+        cController.addObserver(counterTop);
+        cController.addObserver(counterBottom);
         // Create the font
         //printArray(PFont.list());
         //font = createFont("SansSerif.plain", 24);

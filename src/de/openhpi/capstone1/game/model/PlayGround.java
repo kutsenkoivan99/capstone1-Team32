@@ -7,7 +7,6 @@ import processing.core.PApplet;
 
 public class PlayGround extends AlingedFigures {
 	
-	public  enum BORDER_LOC  {TOP, BOTTOM, RIGHT, LEFT};
 	public  enum  BORDER_TYPE {REFLECT,KILL};
 	public enum STATE {
         NEW, RUNNING, WAITING, FINISHED;
@@ -19,6 +18,18 @@ public class PlayGround extends AlingedFigures {
 	
 	public Map<BORDER_LOC, BORDER_TYPE> getBorderMap() {
 		return borderMap;
+	}
+	
+	public class KillEvent {
+		public BORDER_LOC edge;
+		
+		public KillEvent(BORDER_LOC edge){
+			this.edge =edge;
+		}
+	}
+	
+	public KillEvent buildKillEvent(BORDER_LOC edge) {
+		return new KillEvent(edge);
 	}
 	public PlayGround(float x, float y, float xSize, float ySize){
 		position= new Vector2d(x,y);
@@ -53,6 +64,9 @@ public class PlayGround extends AlingedFigures {
 		  p.stroke(0);
 	}
 
+	public void changed() {
+		this.setChanged();
+	}
 
 	@Override
 	public Vector2d getCenter() {
