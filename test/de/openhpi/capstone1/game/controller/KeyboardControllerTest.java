@@ -35,7 +35,7 @@ class KeyboardControllerTest {
 		public boolean pressed;
 		@Override
 		public void update(Observable o, Object arg) {
-			KeyboardController.KeyInfo keyInfo = (KeyboardController.KeyInfo)arg;
+			KeyboardController.KeyEvent keyInfo = (KeyboardController.KeyEvent)arg;
 			this.pressed = keyInfo.pressed;
 			this.key= keyInfo.key;
 		}

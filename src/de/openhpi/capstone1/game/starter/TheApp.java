@@ -1,9 +1,11 @@
 package de.openhpi.capstone1.game.starter;
 
+import de.openhpi.capstone1.game.controller.CounterController;
 import de.openhpi.capstone1.game.controller.KeyboardController;
 import de.openhpi.capstone1.game.controller.KeyboardPaddleController;
 import de.openhpi.capstone1.game.controller.MousePaddleController;
 import de.openhpi.capstone1.game.model.*;
+import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.strategy.PlayGroundDetectStrategy;
 import de.openhpi.capstone1.game.model.strategy.PlayGroundResolutionStrategy;
 import de.openhpi.capstone1.game.model.strategy.RectReflect;
@@ -29,6 +31,11 @@ public class TheApp extends PApplet {
 	MousePaddle mPaddle = new MousePaddle(200f, 390f, 40f, 3f);
 	
 	PlayGround playGround = new PlayGround(0f,0f,PLAYGROUND_X_SIZE,GAME_Y_SIZE);
+	ControlArea  controlArea = new ControlArea(PLAYGROUND_X_SIZE+2,0f, CONTROL_X_SIZE, GAME_Y_SIZE);
+	Counter counterTop = new Counter(10f,20f,120,120,BORDER_LOC.TOP);
+	Counter counterBottom = new Counter(150f,20f,120,120,BORDER_LOC.BOTTOM);
+	CounterController cController = new CounterController();
+
 	PFont font;
 	
 
@@ -58,11 +65,21 @@ public class TheApp extends PApplet {
         playGround.setColor(200, 200, 200);
         playGround.setDetectionStrategy(new PlayGroundDetectStrategy());
         playGround.setResolutionStrategy(new PlayGroundResolutionStrategy());
+        playGround.addObserver(cController);
         
+        controlArea.setColor(0,200,200);
+        controlArea.addChild(counterTop);
+        controlArea.addChild(counterBottom);
+        
+        cController.addObserver(counterTop);
+        cController.addObserver(counterBottom);
+        
+        char[] resetKey = {'r'};
+        kController.addObserver(cController, resetKey);
         // Create the font
-        printArray(PFont.list());
-        font = createFont("SansSerif.plain", 24);
-        textFont(font);
+        //printArray(PFont.list());
+        //font = createFont("SansSerif.plain", 24);
+        //textFont(font);
 	}
 
 	@Override
@@ -89,9 +106,9 @@ public class TheApp extends PApplet {
 		kPaddleTop.draw(this);
 		kPaddleBottom.draw(this);
 		ball.draw(this);
+		
 		fill(200,200,200);
-		rect(PLAYGROUND_X_SIZE, 0, CONTROL_X_SIZE, GAME_Y_SIZE);
-		text("Control-Area", 300, 300);
+		controlArea.draw(this);
 
 	}
 

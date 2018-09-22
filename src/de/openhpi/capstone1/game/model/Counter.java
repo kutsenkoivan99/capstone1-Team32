@@ -1,0 +1,92 @@
+package de.openhpi.capstone1.game.model;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import de.openhpi.capstone1.game.controller.CounterController;
+import de.openhpi.capstone1.game.controller.CounterController.Operation;
+import processing.core.PApplet;
+
+public class Counter extends AlingedFigures implements Observer {
+	String label;
+	int value = 0;
+	int textSize = 32;
+	public float ySize;
+	public float xSize;
+	private BORDER_LOC edge;
+
+	public Counter(float xpos, float ypos, float xSize, float ySize, BORDER_LOC edge) {
+		position = new Vector2d(xpos, ypos);
+		this.xSize = xSize;
+		this.ySize = ySize;
+		this.setColor(255);
+		this.edge = edge;
+		switch (edge) {
+		case TOP:
+			label = "Bottom";
+			break;
+		case BOTTOM:
+			label = "Top";
+			break;
+		case RIGHT:
+			label = "Right";
+			break;
+		case LEFT:
+			label = "Left";
+			break;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.openhpi.capstone1.game.model.Drawable#getCenter()
+	 */
+	@Override
+	public Vector2d getCenter() {
+		return Vector2d.add(position, xSize / 2, ySize / 2);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// handle increase, decrease and reset of counter
+		CounterController.CounterEvent counterInfo = (CounterController.CounterEvent) arg1;
+
+			switch (counterInfo.operation) {
+			case INCREASE:
+				if (counterInfo.edge == edge) this.value += counterInfo.value;
+				break;
+			case DECREASE:
+				if (counterInfo.edge == edge) this.value -= counterInfo.value;
+				break;
+			case RESET:
+				this.value = 0;
+				break;
+			}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.openhpi.capstone1.game.model.AlingedFigures#draw(processing.core.PApplet)
+	 */
+	@Override
+	public void draw(PApplet p) {
+		p.fill(color);
+		p.rect(position.x, position.y, xSize, ySize);
+		p.fill(0);
+		p.textSize(textSize);
+		p.text(label, position.x + 5, position.y  + textSize);
+		p.text("Player" , position.x + 5, position.y + (textSize*2));
+		p.line(position.x, position.y + (textSize*2) + 10, position.x + xSize, position.y + (textSize*2) + 10);
+		p.text(value + "", position.x + 5, position.y + 10 + (textSize * 3));
+	}
+
+}

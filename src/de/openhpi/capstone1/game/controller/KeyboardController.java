@@ -17,11 +17,11 @@ public class KeyboardController extends Observable implements PAppletController 
 	char key = '.';
 	boolean pressed = false;
 
-	public class KeyInfo {
+	public class KeyEvent {
 		public char key;
 		public boolean pressed;
 
-		KeyInfo(char key, boolean pressed) {
+		KeyEvent(char key, boolean pressed) {
 			this.key = key;
 			this.pressed = pressed;
 		}
@@ -32,7 +32,7 @@ public class KeyboardController extends Observable implements PAppletController 
 		setChanged();
 		this.key = p.key;
 		this.pressed = p.keyPressed;
-		notifyObservers(new KeyInfo(p.key, p.keyPressed));
+		notifyObservers(new KeyEvent(p.key, p.keyPressed));
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class KeyboardController extends Observable implements PAppletController 
 	 */
 	@Override
 	public void notifyObservers() {
-		notifyObservers(new KeyInfo(key, pressed));
+		notifyObservers(new KeyEvent(key, pressed));
 
 	}
 
@@ -114,7 +114,7 @@ public class KeyboardController extends Observable implements PAppletController 
 	 */
 	@Override
 	public void notifyObservers(Object arg) {
-		KeyInfo ki = (KeyInfo) arg;
+		KeyEvent ki = (KeyEvent) arg;
 		if (hasChanged()) {
 			Set<Observer> observerSet = observers.get(ki.key);
 			if (observerSet != null) {
