@@ -31,7 +31,7 @@ public class TheApp extends PApplet {
 	MousePaddle mPaddle = new MousePaddle(200f, 390f, 40f, 3f);
 	
 	PlayGround playGround = new PlayGround(0f,0f,PLAYGROUND_X_SIZE,GAME_Y_SIZE);
-	ControlArea  controlArea = new ControlArea(PLAYGROUND_X_SIZE+2,0f, CONTROL_X_SIZE, GAME_Y_SIZE);
+	AlingedFigures  controlArea = new ControlArea(PLAYGROUND_X_SIZE+2,0f, CONTROL_X_SIZE, GAME_Y_SIZE);
 	Counter counterTop = new Counter(10f,20f,120,120,BORDER_LOC.TOP);
 	Counter counterBottom = new Counter(150f,20f,120,120,BORDER_LOC.BOTTOM);
 	CounterController cController = new CounterController();
@@ -66,6 +66,9 @@ public class TheApp extends PApplet {
         playGround.setDetectionStrategy(new PlayGroundDetectStrategy());
         playGround.setResolutionStrategy(new PlayGroundResolutionStrategy());
         playGround.addObserver(cController);
+        playGround.addChild(ball);
+        playGround.addChild(kPaddleTop);
+        playGround.addChild(kPaddleBottom);
         
         controlArea.setColor(0,200,200);
         controlArea.addChild(counterTop);
@@ -90,22 +93,23 @@ public class TheApp extends PApplet {
 	}
 
 	void move() {
-		ball.move();
+		/* ball.move();*/
+		playGround.move();
 	}
 	void handleCollision() {
-		/* mPaddle.dedectAndHandleCollision(ball);*/
+		/* mPaddle.dedectAndHandleCollision(ball);
 		kPaddleTop.dedectAndHandleCollision(ball);
-		kPaddleBottom.dedectAndHandleCollision(ball);
+		kPaddleBottom.dedectAndHandleCollision(ball);*/
 		playGround.dedectAndHandleCollision(ball);
 	}
 
 	void display() {
 		background(255);
 		playGround.draw(this);
-		/*  mPaddle.draw(this); */
+		/*  mPaddle.draw(this); 
 		kPaddleTop.draw(this);
 		kPaddleBottom.draw(this);
-		ball.draw(this);
+		ball.draw(this);*/
 		
 		fill(200,200,200);
 		controlArea.draw(this);

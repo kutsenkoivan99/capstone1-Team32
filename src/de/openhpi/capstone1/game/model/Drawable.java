@@ -59,4 +59,8 @@ public interface Drawable {
 	 */
 	public void draw(PApplet p);
 
+	public void move();
+	
+	public boolean dedectAndHandleCollision(Drawable drawable);
+
 }

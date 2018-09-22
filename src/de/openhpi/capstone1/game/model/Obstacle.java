@@ -4,6 +4,8 @@ package de.openhpi.capstone1.game.model;
 
 public abstract class Obstacle extends AlingedFigures implements Drawable {
 	protected Vector2d velocity;
+	
+	@Override
 	public void move(){
 		getPosition().add(velocity);
 	}

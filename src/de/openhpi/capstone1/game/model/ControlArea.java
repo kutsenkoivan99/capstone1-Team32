@@ -1,15 +1,10 @@
 package de.openhpi.capstone1.game.model;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import processing.core.PApplet;
 
 public class ControlArea extends AlingedFigures {
 	
-	List <Drawable> children = new ArrayList<Drawable>();
-		
 	public float ySize;
 	public float xSize;
 	
@@ -27,11 +22,6 @@ public class ControlArea extends AlingedFigures {
 		  for(Drawable drawable: children) {
 			  drawable.draw(p);
 		  }
-	}
-
-	public void addChild(Drawable drawable){
-		drawable.getPosition().add(this.position);
-		children.add(drawable);
 	}
 
 	@Override

@@ -40,6 +40,23 @@ public class PlayGround extends AlingedFigures {
 		borderMap.put(BORDER_LOC.RIGHT, BORDER_TYPE.REFLECT);
 		borderMap.put(BORDER_LOC.LEFT, BORDER_TYPE.REFLECT);
 	}
+	
+	@Override
+	public void move() {
+		  for(Drawable drawable: children) {
+			  drawable.move();
+		  }
+		
+	}
+	
+	@Override
+	public boolean dedectAndHandleCollision(Drawable drawable) { 
+		boolean hasCollision = super.dedectAndHandleCollision(drawable);
+		  for(Drawable child: children) {
+			  hasCollision |= child.dedectAndHandleCollision(drawable);
+		  }
+		  return hasCollision;
+	}
 	@Override
 	public void draw(PApplet p) {
 		  p.noStroke();
@@ -62,6 +79,9 @@ public class PlayGround extends AlingedFigures {
 		  p.stroke(c);
 		  p.line(position.x, position.y, position.x, position.y+ySize-1);
 		  p.stroke(0);
+		  for(Drawable drawable: children) {
+			  drawable.draw(p);
+		  }
 	}
 
 	public void changed() {
