@@ -29,6 +29,9 @@ public class TheApp extends PApplet {
 	MousePaddle mPaddle = new MousePaddle(200f, 390f, 40f, 3f);
 	
 	PlayGround playGround = new PlayGround(0f,0f,PLAYGROUND_X_SIZE,GAME_Y_SIZE);
+	ControlArea  controlArea = new ControlArea(PLAYGROUND_X_SIZE+2,0f, CONTROL_X_SIZE, GAME_Y_SIZE);
+	Counter counter1 = new Counter(10f,20f,120,120,"Player 1");
+	Counter counter2 = new Counter(150f,20f,120,120,"Player 2");
 	PFont font;
 	
 
@@ -59,10 +62,14 @@ public class TheApp extends PApplet {
         playGround.setDetectionStrategy(new PlayGroundDetectStrategy());
         playGround.setResolutionStrategy(new PlayGroundResolutionStrategy());
         
+        controlArea.setColor(0,200,200);
+        controlArea.addChild(counter1);
+        controlArea.addChild(counter2);
+        
         // Create the font
-        printArray(PFont.list());
-        font = createFont("SansSerif.plain", 24);
-        textFont(font);
+        //printArray(PFont.list());
+        //font = createFont("SansSerif.plain", 24);
+        //textFont(font);
 	}
 
 	@Override
@@ -89,9 +96,9 @@ public class TheApp extends PApplet {
 		kPaddleTop.draw(this);
 		kPaddleBottom.draw(this);
 		ball.draw(this);
+		
 		fill(200,200,200);
-		rect(PLAYGROUND_X_SIZE, 0, CONTROL_X_SIZE, GAME_Y_SIZE);
-		text("Control-Area", 300, 300);
+		controlArea.draw(this);
 
 	}
 
