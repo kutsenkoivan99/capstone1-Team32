@@ -73,6 +73,9 @@ public class TheApp extends PApplet {
         
         cController.addObserver(counterTop);
         cController.addObserver(counterBottom);
+        
+        char[] resetKey = {'r'};
+        kController.addObserver(cController, resetKey);
         // Create the font
         //printArray(PFont.list());
         //font = createFont("SansSerif.plain", 24);

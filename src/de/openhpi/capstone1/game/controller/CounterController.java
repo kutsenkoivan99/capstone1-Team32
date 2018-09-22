@@ -3,6 +3,7 @@ package de.openhpi.capstone1.game.controller;
 import java.util.Observable;
 import java.util.Observer;
 
+import de.openhpi.capstone1.game.controller.KeyboardController.KeyEvent;
 import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.PlayGround.KillEvent;
 
@@ -36,7 +37,11 @@ public class CounterController extends Observable implements Observer {
 			KillEvent ki = (KillEvent) arg;
 			setChanged();
 			notifyObservers(new CounterEvent(Operation.INCREASE, 1, ki.edge)); 
-		} else {
+		} else if (arg instanceof KeyEvent) {
+
+			setChanged();
+			notifyObservers(new CounterEvent(Operation.RESET, 1, null)); 
+		} else{
 			System.out.println("can not handle event of type: " + arg.getClass().getName());
 		}
 	}

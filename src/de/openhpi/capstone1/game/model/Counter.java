@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import de.openhpi.capstone1.game.controller.CounterController;
+import de.openhpi.capstone1.game.controller.CounterController.Operation;
 import processing.core.PApplet;
 
 public class Counter extends AlingedFigures implements Observer {
@@ -55,20 +56,18 @@ public class Counter extends AlingedFigures implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		// handle increase, decrease and reset of counter
 		CounterController.CounterEvent counterInfo = (CounterController.CounterEvent) arg1;
-		if (counterInfo.edge == edge) {
 
 			switch (counterInfo.operation) {
 			case INCREASE:
-				this.value += counterInfo.value;
+				if (counterInfo.edge == edge) this.value += counterInfo.value;
 				break;
 			case DECREASE:
-				this.value -= counterInfo.value;
+				if (counterInfo.edge == edge) this.value -= counterInfo.value;
 				break;
 			case RESET:
 				this.value = 0;
 				break;
 			}
-		}
 
 	}
 
