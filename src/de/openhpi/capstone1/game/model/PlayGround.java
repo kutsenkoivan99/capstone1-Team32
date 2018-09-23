@@ -20,17 +20,6 @@ public class PlayGround extends AlingedFigures {
 		return borderMap;
 	}
 	
-	public class KillEvent {
-		public BORDER_LOC edge;
-		
-		public KillEvent(BORDER_LOC edge){
-			this.edge =edge;
-		}
-	}
-	
-	public KillEvent buildKillEvent(BORDER_LOC edge) {
-		return new KillEvent(edge);
-	}
 	public PlayGround(float x, float y, float xSize, float ySize){
 		position= new Vector2d(x,y);
 		this.xSize=xSize;
@@ -82,10 +71,6 @@ public class PlayGround extends AlingedFigures {
 		  for(Drawable drawable: children) {
 			  drawable.draw(p);
 		  }
-	}
-
-	public void changed() {
-		this.setChanged();
 	}
 
 	@Override

@@ -4,8 +4,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import de.openhpi.capstone1.game.controller.KeyboardController.KeyEvent;
+import de.openhpi.capstone1.game.model.AlingedFigures.KillEvent;
 import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
-import de.openhpi.capstone1.game.model.PlayGround.KillEvent;
+import de.openhpi.capstone1.game.model.Obstacle.ObstacleEvent;
 
 public class CounterController extends Observable implements Observer {
 	public static enum Operation {
@@ -41,7 +42,12 @@ public class CounterController extends Observable implements Observer {
 
 			setChanged();
 			notifyObservers(new CounterEvent(Operation.RESET, 1, null)); 
-		} else{
+		} else if (arg instanceof ObstacleEvent) {
+			ObstacleEvent obstacleEvent = (ObstacleEvent) arg;
+			setChanged();
+			
+			notifyObservers(new CounterEvent(Operation.INCREASE, obstacleEvent.value, BORDER_LOC.ALL)); 
+		} else {
 			System.out.println("can not handle event of type: " + arg.getClass().getName());
 		}
 	}

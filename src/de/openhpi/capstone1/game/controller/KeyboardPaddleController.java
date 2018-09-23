@@ -4,7 +4,7 @@
 package de.openhpi.capstone1.game.controller;
 
 import de.openhpi.capstone1.game.model.MousePaddle;
-import de.openhpi.capstone1.game.model.Rectangle;
+import de.openhpi.capstone1.game.model.Obstacle;
 import processing.core.PApplet;
 
 /**
@@ -13,9 +13,9 @@ import processing.core.PApplet;
  */
 public class KeyboardPaddleController implements PAppletController {
 
-	private Rectangle paddle;
+	private Obstacle paddle;
 
-	public KeyboardPaddleController(Rectangle paddle) {
+	public KeyboardPaddleController(Obstacle paddle) {
 		// TODO Auto-generated constructor stub
 		this.paddle = paddle;
 	}

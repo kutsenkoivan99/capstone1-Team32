@@ -9,7 +9,6 @@ import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.PlayGround;
 import de.openhpi.capstone1.game.model.Vector2d;
 import de.openhpi.capstone1.game.model.PlayGround.BORDER_TYPE;
-import de.openhpi.capstone1.game.model.PlayGround.KillEvent;
 
 public class PlayGroundResolutionStrategy implements ResolutionStrategy {
 

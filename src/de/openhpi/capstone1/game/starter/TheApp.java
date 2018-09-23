@@ -17,8 +17,9 @@ public class TheApp extends PApplet {
 	final int PLAYGROUND_X_SIZE = 500;
 	final int GAME_Y_SIZE = 500;
 	final int CONTROL_X_SIZE = 300;
+	Game game = new Game(PLAYGROUND_X_SIZE,CONTROL_X_SIZE , GAME_Y_SIZE);
 
-	
+	/*
 	KeyboardController kController = new KeyboardController();
 	char[] topKeys = {'k','l','ö','ä','p','o'};
 	KeyboardPaddle kPaddleTop = new KeyboardPaddle(PLAYGROUND_X_SIZE/2-20, 10f, 40f, 3f, topKeys,kController );
@@ -37,7 +38,7 @@ public class TheApp extends PApplet {
 	CounterController cController = new CounterController();
 
 	PFont font;
-	
+	*/
 
 	@Override
 	public void settings() {
@@ -47,6 +48,8 @@ public class TheApp extends PApplet {
 	@Override
 	public void setup() { // setup() runs once
 		frameRate(60);
+		game.build(2);
+		/*
 		mPaddleController = new MousePaddleController(mPaddle);
 //		kPaddleController = new KeyboardPaddleController(kPaddleTop);
 //		kPaddleController = new KeyboardPaddleController(kPaddleBottom);
@@ -83,23 +86,27 @@ public class TheApp extends PApplet {
         //printArray(PFont.list());
         //font = createFont("SansSerif.plain", 24);
         //textFont(font);
+         
+         */
 	}
 
 	@Override
 	public void draw() { // draw() loops forever, until stopped
+		game.draw(this);
+		/*
 		move();
 		handleCollision();
-		display();
+		display();*/
 	}
-
+/*
 	void move() {
-		/* ball.move();*/
+		/* ball.move();
 		playGround.move();
 	}
 	void handleCollision() {
 		/* mPaddle.dedectAndHandleCollision(ball);
 		kPaddleTop.dedectAndHandleCollision(ball);
-		kPaddleBottom.dedectAndHandleCollision(ball);*/
+		kPaddleBottom.dedectAndHandleCollision(ball);
 		playGround.dedectAndHandleCollision(ball);
 	}
 
@@ -109,34 +116,38 @@ public class TheApp extends PApplet {
 		/*  mPaddle.draw(this); 
 		kPaddleTop.draw(this);
 		kPaddleBottom.draw(this);
-		ball.draw(this);*/
+		ball.draw(this);
 		
 		fill(200,200,200);
 		controlArea.draw(this);
 
-	}
+	}*/
 
 	// Add further user interaction as necessary
 	@Override
 	public void mousePressed() {
 		// System.out.println("MousePressed = " + mousePressed);
-		mPaddleController.handleEvent(this);
+		//mPaddleController.handleEvent(this);
+		game.mousePressed(this);
 	}
 
 	@Override
 	public void mouseReleased() {
-		mPaddleController.handleEvent(this);
+		//mPaddleController.handleEvent(this);
+		game.mouseReleased(this);
 	}
 
 	@Override
 	public void keyPressed() {
 		// System.out.println("MousePressed = " + mousePressed);
-		kController.handleEvent(this);
+		//kController.handleEvent(this);
+		game.keyPressed(this);
 	}
 
 	@Override
 	public void keyReleased() {
-		kController.handleEvent(this);
+		//kController.handleEvent(this);
+		game.keyReleased(this);
 	}
 
 }

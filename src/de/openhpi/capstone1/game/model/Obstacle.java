@@ -1,9 +1,25 @@
 package de.openhpi.capstone1.game.model;
 
-
+import de.openhpi.capstone1.game.model.AlingedFigures.KillEvent;
+import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 
 public abstract class Obstacle extends AlingedFigures implements Drawable {
 	protected Vector2d velocity;
+	private boolean hasCollision = false;
+	
+	public class ObstacleEvent {
+		public int value;
+		
+		public ObstacleEvent(int value){
+			this.value =value;
+		}
+	}
+	
+	public ObstacleEvent buildObstacleEvent(int value) {
+		return new ObstacleEvent(value);
+	}
+
+	
 	
 	@Override
 	public void move(){
@@ -44,6 +60,29 @@ public abstract class Obstacle extends AlingedFigures implements Drawable {
 
 	public Vector2d getVelocity() {
 		return velocity;
+	}
+
+	/**check if the Obstacle has a collision. This check helps to avoid counting a single collision multiple times.
+	 * if it is already set, the collision is already handled.
+	 * @return true if this collision was already dedected.
+	 */
+	public boolean hasCollision() {
+		return hasCollision ;
+	}
+	
+	/**Set the collision flag to indicate, that a collision has been detected and has already been resolved
+	 * Sets the hasCollision flag of the Obstacle to true
+	 */
+	public void setCollision() {
+		hasCollision = true ;
+	}
+	
+	/**Clears the collision flag to indicate, that there is currently no collision. This should be done 
+	 * in the detection strategy
+	 * Sets the hasCollision flag of the Obstacle to false
+	 */
+	public void clearCollision() {
+		hasCollision = false ;
 	}
 
 }
