@@ -18,7 +18,11 @@ public class RectRotateAndNearest implements DetectionStrategy {
 			transformedBallPos.rotate(-angle);
 			
 		}
-		return intersects(transformedBallPos.x,transformedBallPos.y,ball.radius,-rect.xSize/2, -rect.ySize/2, rect.xSize/2, rect.ySize/2);
+		boolean isHit= intersects(transformedBallPos.x,transformedBallPos.y,ball.radius,-rect.xSize/2, -rect.ySize/2, rect.xSize/2, rect.ySize/2);
+		if (!isHit) {
+			rect.clearCollision();
+		}
+		return isHit;
 	}
 	public boolean intersects(float cx, float cy, float radius, float left, float top, float right, float bottom)
 	{

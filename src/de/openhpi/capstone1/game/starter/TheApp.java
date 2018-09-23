@@ -17,8 +17,9 @@ public class TheApp extends PApplet {
 	final int PLAYGROUND_X_SIZE = 500;
 	final int GAME_Y_SIZE = 500;
 	final int CONTROL_X_SIZE = 300;
+	Game game = new Game(PLAYGROUND_X_SIZE,CONTROL_X_SIZE , GAME_Y_SIZE);
 
-	
+	/*
 	KeyboardController kController = new KeyboardController();
 	char[] topKeys = {'k','l','ö','ä','p','o'};
 	KeyboardPaddle kPaddleTop = new KeyboardPaddle(PLAYGROUND_X_SIZE/2-20, 10f, 40f, 3f, topKeys,kController );
@@ -31,13 +32,13 @@ public class TheApp extends PApplet {
 	MousePaddle mPaddle = new MousePaddle(200f, 390f, 40f, 3f);
 	
 	PlayGround playGround = new PlayGround(0f,0f,PLAYGROUND_X_SIZE,GAME_Y_SIZE);
-	ControlArea  controlArea = new ControlArea(PLAYGROUND_X_SIZE+2,0f, CONTROL_X_SIZE, GAME_Y_SIZE);
+	AlingedFigures  controlArea = new ControlArea(PLAYGROUND_X_SIZE+2,0f, CONTROL_X_SIZE, GAME_Y_SIZE);
 	Counter counterTop = new Counter(10f,20f,120,120,BORDER_LOC.TOP);
 	Counter counterBottom = new Counter(150f,20f,120,120,BORDER_LOC.BOTTOM);
 	CounterController cController = new CounterController();
 
 	PFont font;
-	
+	*/
 
 	@Override
 	public void settings() {
@@ -47,6 +48,8 @@ public class TheApp extends PApplet {
 	@Override
 	public void setup() { // setup() runs once
 		frameRate(60);
+		game.build(2);
+		/*
 		mPaddleController = new MousePaddleController(mPaddle);
 //		kPaddleController = new KeyboardPaddleController(kPaddleTop);
 //		kPaddleController = new KeyboardPaddleController(kPaddleBottom);
@@ -66,6 +69,9 @@ public class TheApp extends PApplet {
         playGround.setDetectionStrategy(new PlayGroundDetectStrategy());
         playGround.setResolutionStrategy(new PlayGroundResolutionStrategy());
         playGround.addObserver(cController);
+        playGround.addChild(ball);
+        playGround.addChild(kPaddleTop);
+        playGround.addChild(kPaddleBottom);
         
         controlArea.setColor(0,200,200);
         controlArea.addChild(counterTop);
@@ -80,20 +86,25 @@ public class TheApp extends PApplet {
         //printArray(PFont.list());
         //font = createFont("SansSerif.plain", 24);
         //textFont(font);
+         
+         */
 	}
 
 	@Override
 	public void draw() { // draw() loops forever, until stopped
+		game.draw(this);
+		/*
 		move();
 		handleCollision();
-		display();
+		display();*/
 	}
-
+/*
 	void move() {
-		ball.move();
+		/* ball.move();
+		playGround.move();
 	}
 	void handleCollision() {
-		/* mPaddle.dedectAndHandleCollision(ball);*/
+		/* mPaddle.dedectAndHandleCollision(ball);
 		kPaddleTop.dedectAndHandleCollision(ball);
 		kPaddleBottom.dedectAndHandleCollision(ball);
 		playGround.dedectAndHandleCollision(ball);
@@ -102,7 +113,7 @@ public class TheApp extends PApplet {
 	void display() {
 		background(255);
 		playGround.draw(this);
-		/*  mPaddle.draw(this); */
+		/*  mPaddle.draw(this); 
 		kPaddleTop.draw(this);
 		kPaddleBottom.draw(this);
 		ball.draw(this);
@@ -110,29 +121,33 @@ public class TheApp extends PApplet {
 		fill(200,200,200);
 		controlArea.draw(this);
 
-	}
+	}*/
 
 	// Add further user interaction as necessary
 	@Override
 	public void mousePressed() {
 		// System.out.println("MousePressed = " + mousePressed);
-		mPaddleController.handleEvent(this);
+		//mPaddleController.handleEvent(this);
+		game.mousePressed(this);
 	}
 
 	@Override
 	public void mouseReleased() {
-		mPaddleController.handleEvent(this);
+		//mPaddleController.handleEvent(this);
+		game.mouseReleased(this);
 	}
 
 	@Override
 	public void keyPressed() {
 		// System.out.println("MousePressed = " + mousePressed);
-		kController.handleEvent(this);
+		//kController.handleEvent(this);
+		game.keyPressed(this);
 	}
 
 	@Override
 	public void keyReleased() {
-		kController.handleEvent(this);
+		//kController.handleEvent(this);
+		game.keyReleased(this);
 	}
 
 }

@@ -13,7 +13,7 @@ import processing.core.PApplet;
 public interface Drawable {
 	
 	
-	public  enum BORDER_LOC  {TOP, BOTTOM, RIGHT, LEFT}
+	public  enum BORDER_LOC  {TOP, BOTTOM, RIGHT, LEFT, ALL}
 	/**get the drawing position of this object. For a rectangle this is the top left corner
 	 * @return the drawing position
 	 */
@@ -58,5 +58,9 @@ public interface Drawable {
 	 * @param p the processing applet
 	 */
 	public void draw(PApplet p);
+
+	public void move();
+	
+	public boolean dedectAndHandleCollision(Drawable drawable);
 
 }

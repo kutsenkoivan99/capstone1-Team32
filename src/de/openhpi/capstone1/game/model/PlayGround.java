@@ -20,17 +20,6 @@ public class PlayGround extends AlingedFigures {
 		return borderMap;
 	}
 	
-	public class KillEvent {
-		public BORDER_LOC edge;
-		
-		public KillEvent(BORDER_LOC edge){
-			this.edge =edge;
-		}
-	}
-	
-	public KillEvent buildKillEvent(BORDER_LOC edge) {
-		return new KillEvent(edge);
-	}
 	public PlayGround(float x, float y, float xSize, float ySize){
 		position= new Vector2d(x,y);
 		this.xSize=xSize;
@@ -39,6 +28,23 @@ public class PlayGround extends AlingedFigures {
 		borderMap.put(BORDER_LOC.BOTTOM, BORDER_TYPE.KILL);
 		borderMap.put(BORDER_LOC.RIGHT, BORDER_TYPE.REFLECT);
 		borderMap.put(BORDER_LOC.LEFT, BORDER_TYPE.REFLECT);
+	}
+	
+	@Override
+	public void move() {
+		  for(Drawable drawable: children) {
+			  drawable.move();
+		  }
+		
+	}
+	
+	@Override
+	public boolean dedectAndHandleCollision(Drawable drawable) { 
+		boolean hasCollision = super.dedectAndHandleCollision(drawable);
+		  for(Drawable child: children) {
+			  hasCollision |= child.dedectAndHandleCollision(drawable);
+		  }
+		  return hasCollision;
 	}
 	@Override
 	public void draw(PApplet p) {
@@ -62,10 +68,9 @@ public class PlayGround extends AlingedFigures {
 		  p.stroke(c);
 		  p.line(position.x, position.y, position.x, position.y+ySize-1);
 		  p.stroke(0);
-	}
-
-	public void changed() {
-		this.setChanged();
+		  for(Drawable drawable: children) {
+			  drawable.draw(p);
+		  }
 	}
 
 	@Override
