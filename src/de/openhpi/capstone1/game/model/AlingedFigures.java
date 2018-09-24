@@ -2,7 +2,6 @@ package de.openhpi.capstone1.game.model;
 
 import java.util.Observable;
 
-import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.strategy.DetectionStrategy;
 import de.openhpi.capstone1.game.model.strategy.ResolutionStrategy;
 import processing.core.PApplet;

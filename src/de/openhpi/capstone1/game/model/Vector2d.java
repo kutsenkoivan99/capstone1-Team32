@@ -55,13 +55,18 @@ public class Vector2d {
 	}
 
 	public Vector2d normalize() {
-		// TODO Auto-generated method stub
-		return null;
+		float factor = this.length();
+		Vector2d result = this.copy();
+		result.x /= factor;
+		result.y /= factor;
+		return result;
 	}
 
-	public Vector2d mult(float distanceCorrection) {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector2d mult(float factor) {
+		Vector2d result = this.copy();
+		result.x *= factor;
+		result.y *= factor;
+		return result;
 	}
 
 	public float heading() {
@@ -69,10 +74,6 @@ public class Vector2d {
 		return 0;
 	}
 
-	public static Vector2d rotate(Vector2d vector, Vector2d center, float angle) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public void rotate(float angle) {
 		double theta = Math.atan2(-y, x);

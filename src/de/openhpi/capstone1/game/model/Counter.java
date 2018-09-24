@@ -6,7 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import de.openhpi.capstone1.game.controller.CounterController;
-import de.openhpi.capstone1.game.controller.CounterController.Operation;
 import processing.core.PApplet;
 
 public class Counter extends AlingedFigures implements Observer {
@@ -40,6 +39,9 @@ public class Counter extends AlingedFigures implements Observer {
 			break;
 		case LEFT:
 			label1 = "Left";
+			break;
+		case ALL:
+			label1 = "ALL";
 			break;
 		}
 	}

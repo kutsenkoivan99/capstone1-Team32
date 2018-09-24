@@ -3,7 +3,6 @@ package de.openhpi.capstone1.game.model.strategy;
 import de.openhpi.capstone1.game.model.Ball;
 import de.openhpi.capstone1.game.model.Drawable;
 import de.openhpi.capstone1.game.model.PlayGround;
-import de.openhpi.capstone1.game.model.Rectangle;
 import de.openhpi.capstone1.game.model.Vector2d;
 
 public class PlayGroundDetectStrategy implements DetectionStrategy {

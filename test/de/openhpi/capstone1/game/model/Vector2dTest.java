@@ -111,27 +111,29 @@ class Vector2dTest {
 
 	@Test
 	void testNormalize() {
-		fail("Not yet implemented");
+		Vector2d v1 = new Vector2d(4,3);
+		Vector2d v2 =v1.normalize();
+		assertEquals(1f, v2.length(), 0.0001f, "vector does not have the lenght 1 after normalization");
 	}
 
 	@Test
 	void testMult() {
-		fail("Not yet implemented");
+		Vector2d v1 = new Vector2d(4,3);
+		Vector2d v2 = v1.mult(5f);
+		assertEquals (15f, v2.y, 0.0001f, "vector x not multipled by 5");
+		assertEquals (20f, v2.x, 0.0001f, "vector y not multipled by 5");
 	}
 
-	@Test
-	void testHeading() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	void testRotateVector2dVector2dFloat() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testRotateFloat() {
-		fail("Not yet implemented");
+		Vector2d v1 = new Vector2d(3,3);
+		v1.rotate(45);
+		assertEquals (0f, v1.x, 0.0001f, "vector not pointing in y direction after rotating by 45 Degrees");
+		v1.rotate(135); 
+		assertEquals (-3f, v1.y, 0.0001f, "vector not pointing in reverse direction after rotating by 45 + 135 = 180  Degrees");
+		assertEquals (-3f, v1.x, 0.0001f, "vector not pointing in reverse direction after rotating by 45 + 135 = 180  Degrees");
 	}
 
 }

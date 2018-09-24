@@ -2,7 +2,6 @@ package de.openhpi.capstone1.game.model.strategy;
 
 import de.openhpi.capstone1.game.model.Ball;
 import de.openhpi.capstone1.game.model.Drawable;
-import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.Vector2d;
 import de.openhpi.capstone1.game.model.Rectangle;
 
