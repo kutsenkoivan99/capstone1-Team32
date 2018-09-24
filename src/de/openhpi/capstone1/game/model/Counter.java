@@ -15,14 +15,14 @@ public class Counter extends AlingedFigures implements Observer {
 	int textSize = 32;
 	public float ySize;
 	public float xSize;
-	private List<BORDER_LOC> edgeList;
+	private List<DrawEdges> edgeList;
 
-	public Counter(float xpos, float ypos, float xSize, float ySize, BORDER_LOC[] edge) {
+	public Counter(float xpos, float ypos, float xSize, float ySize, DrawEdges[] edge) {
 		position = new Vector2d(xpos, ypos);
 		this.xSize = xSize;
 		this.ySize = ySize;
 		this.setColor(255);
-		this.edgeList = new ArrayList<BORDER_LOC>();
+		this.edgeList = new ArrayList<DrawEdges>();
 		for (int i = 0; i < edge.length; i++) {
 			this.edgeList.add(edge[i]);
 		}
@@ -39,9 +39,6 @@ public class Counter extends AlingedFigures implements Observer {
 			break;
 		case LEFT:
 			label1 = "Left";
-			break;
-		case ALL:
-			label1 = "ALL";
 			break;
 		}
 	}

@@ -24,9 +24,9 @@ public class Game extends AlingedFigures implements Drawable, Observer {
 	char[] playerKeys = {'1','2'};
 	CounterController cController;
 	Counter counterTop;
-	BORDER_LOC[] borderListTop = { BORDER_LOC.TOP, BORDER_LOC.ALL};
+	DrawEdges[] borderListTop = { DrawEdges.TOP};
 	Counter counterBottom;
-	BORDER_LOC[] borderListBottom = { BORDER_LOC.BOTTOM };
+	DrawEdges[] borderListBottom = { DrawEdges.BOTTOM };
 	MousePaddleController mPaddleController;
 	
 	KeyboardPaddle kPaddleTop;
@@ -108,7 +108,7 @@ public class Game extends AlingedFigures implements Drawable, Observer {
 	void switchGame(int players) {
 		switch (players) {
 		case 1:
-			playGround.getBorderMap().put(BORDER_LOC.TOP, BORDER_TYPE.REFLECT);
+			playGround.getBorderMap().put(DrawEdges.TOP, BORDER_TYPE.REFLECT);
 			playGround.addChild(mPaddle);
 			playGround.addChild(target);
 			playGround.addChild(block1);
@@ -120,7 +120,7 @@ public class Game extends AlingedFigures implements Drawable, Observer {
 			playGround.removeChild(kPaddleBottom);
 			break;
 		case 2:
-			playGround.getBorderMap().put(BORDER_LOC.TOP, BORDER_TYPE.KILL);
+			playGround.getBorderMap().put(DrawEdges.TOP, BORDER_TYPE.KILL);
 
 	        playGround.addChild(kPaddleTop);
 	        playGround.addChild(kPaddleBottom);

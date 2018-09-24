@@ -19,14 +19,14 @@ public abstract class AlingedFigures extends Observable implements Drawable {
 	}
 
 	public class KillEvent {
-		public BORDER_LOC edge;
+		public DrawEdges edge;
 
-		public KillEvent(BORDER_LOC edge) {
+		public KillEvent(DrawEdges edge) {
 			this.edge = edge;
 		}
 	}
 
-	public KillEvent buildKillEvent(BORDER_LOC edge) {
+	public KillEvent buildKillEvent(DrawEdges edge) {
 		return new KillEvent(edge);
 	}
 

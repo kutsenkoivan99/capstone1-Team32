@@ -21,7 +21,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="3" language="java" name="de.openhpi.capstone1.game.model.Drawable.BORDER_LOC" 
+  <enumeration id="3" language="java" name="de.openhpi.capstone1.game.model.Drawable.DrawEdges" 
     project="capstone1-TheProject" file="/capstone1-TheProject/src/de/openhpi/capstone1/game/model/Drawable.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="100" y="776"/>    

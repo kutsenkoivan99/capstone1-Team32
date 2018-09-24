@@ -14,9 +14,9 @@ public class PlayGround extends AlingedFigures {
 	
 	public float ySize;
 	public float xSize;
-	Map<BORDER_LOC, BORDER_TYPE> borderMap = new EnumMap<BORDER_LOC, BORDER_TYPE>(BORDER_LOC.class);
+	Map<DrawEdges, BORDER_TYPE> borderMap = new EnumMap<DrawEdges, BORDER_TYPE>(DrawEdges.class);
 	
-	public Map<BORDER_LOC, BORDER_TYPE> getBorderMap() {
+	public Map<DrawEdges, BORDER_TYPE> getBorderMap() {
 		return borderMap;
 	}
 	
@@ -24,10 +24,10 @@ public class PlayGround extends AlingedFigures {
 		position= new Vector2d(x,y);
 		this.xSize=xSize;
 		this.ySize = ySize;
-		borderMap.put(BORDER_LOC.TOP, BORDER_TYPE.KILL);
-		borderMap.put(BORDER_LOC.BOTTOM, BORDER_TYPE.KILL);
-		borderMap.put(BORDER_LOC.RIGHT, BORDER_TYPE.REFLECT);
-		borderMap.put(BORDER_LOC.LEFT, BORDER_TYPE.REFLECT);
+		borderMap.put(DrawEdges.TOP, BORDER_TYPE.KILL);
+		borderMap.put(DrawEdges.BOTTOM, BORDER_TYPE.KILL);
+		borderMap.put(DrawEdges.RIGHT, BORDER_TYPE.REFLECT);
+		borderMap.put(DrawEdges.LEFT, BORDER_TYPE.REFLECT);
 	}
 	
 	@Override
@@ -53,18 +53,18 @@ public class PlayGround extends AlingedFigures {
 		  p.rect(position.x,position.y,xSize,ySize);
 		  
 		  //p.noStroke();
-		  int c = (borderMap.get(BORDER_LOC.TOP)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
+		  int c = (borderMap.get(DrawEdges.TOP)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
 		  p.stroke(c);
 		  p.line(position.x, position.y, position.x+xSize, position.y);
 		  
-		  c = (borderMap.get(BORDER_LOC.BOTTOM)== BORDER_TYPE.KILL)?p.color(255,0,0):p.color(100);
+		  c = (borderMap.get(DrawEdges.BOTTOM)== BORDER_TYPE.KILL)?p.color(255,0,0):p.color(100);
 		  p.stroke(c);
 		  p.line(position.x, position.y+ySize, position.x+xSize, position.y+ySize);
 		  
-		  c = (borderMap.get(BORDER_LOC.RIGHT)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
+		  c = (borderMap.get(DrawEdges.RIGHT)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
 		  p.stroke(c);
 		  p.line(position.x+xSize-1, position.y, position.x+xSize-1, position.y+ySize-1);
-		  c = (borderMap.get(BORDER_LOC.LEFT)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
+		  c = (borderMap.get(DrawEdges.LEFT)== BORDER_TYPE.KILL)?p.color(255f,0f,0f):p.color(0);
 		  p.stroke(c);
 		  p.line(position.x, position.y, position.x, position.y+ySize-1);
 		  p.stroke(0);

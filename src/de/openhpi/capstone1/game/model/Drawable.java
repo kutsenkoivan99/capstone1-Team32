@@ -16,7 +16,8 @@ import processing.core.PApplet;
 public interface Drawable {
 	
 	
-	public  enum BORDER_LOC  {TOP, BOTTOM, RIGHT, LEFT, ALL}
+	// the edges of the drawing area or a rectangle
+	public  enum DrawEdges  {TOP, BOTTOM, RIGHT, LEFT}
 
 	List<Drawable> children = new ArrayList<Drawable>();
 	/**get the drawing position of this object. For a rectangle this is the top left corner
@@ -56,19 +57,41 @@ public interface Drawable {
 	 */
 	public Vector2d getCenter();
 	
+	/**Indicate if this drawable is visible
+	 * @return true or false
+	 */
 	public boolean isVisible();
 	
+	/**Set the visibility of the drawable 
+	 * @param isVisible - true or false
+	 */
 	public void setVisible(boolean isVisible);
+	
 	/**Draw the object on the given processing applet window
 	 * @param p the processing applet
 	 */
 	public void draw(PApplet p);
 
+	/**Move the drawable by its velocity
+	 * 
+	 */
 	public void move();
 	
+	/**detect if this drawable collides (overlaps) with another drawable.
+	 * @param drawable -currently only a ball is supported by this method.
+	 * @return true if there is an collision
+	 */
 	public boolean dedectAndHandleCollision(Drawable drawable);
 
-	public void addChild(Drawable drawable);
+	/**Add the drawable child as child to this drawable. The child is only added if it is not already a child of the parent.
+	 * The position of the drawable will be interpreted relative to the position of the parent
+	 * It is up to this drawable ( the parent) to forward the draw and move method to the children
+	 * @param child a drawable to add as child
+	 */
+	public void addChild(Drawable child);
 	
-	public void removeChild(Drawable drawable);
+	/**If this child drawable is a child of the parent, remove it from the list of children
+	 * @param child the child to remove;
+	 */
+	public void removeChild(Drawable child);
 }
