@@ -1,7 +1,7 @@
 package de.openhpi.capstone1.game.model.strategy;
 
-import de.openhpi.capstone1.game.model.AlingedFigures;
 import de.openhpi.capstone1.game.model.Ball;
+import de.openhpi.capstone1.game.model.Drawable;
 import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.Vector2d;
 import de.openhpi.capstone1.game.model.Rectangle;
@@ -9,7 +9,7 @@ import de.openhpi.capstone1.game.model.Rectangle;
 public class RectReflect implements ResolutionStrategy {
 
 	@Override
-	public void handleCollision(AlingedFigures obstacle, Ball ball) {
+	public void handleCollision(Drawable obstacle, Ball ball) {
 		// this strategy works only for rectangles
 		if (obstacle instanceof Rectangle) {
 			Rectangle rect = (Rectangle) obstacle;

@@ -4,16 +4,21 @@
 package de.openhpi.capstone1.game.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import processing.core.PApplet;
 
 /**This interface marks objects that can be drawn with the Processing Library on a PApplet.
- * @author walter
+ * @author 
  *
  */
 public interface Drawable {
 	
 	
 	public  enum BORDER_LOC  {TOP, BOTTOM, RIGHT, LEFT, ALL}
+
+	List<Drawable> children = new ArrayList<Drawable>();
 	/**get the drawing position of this object. For a rectangle this is the top left corner
 	 * @return the drawing position
 	 */
@@ -63,4 +68,7 @@ public interface Drawable {
 	
 	public boolean dedectAndHandleCollision(Drawable drawable);
 
+	public void addChild(Drawable drawable);
+	
+	public void removeChild(Drawable drawable);
 }

@@ -3,8 +3,8 @@ package de.openhpi.capstone1.game.model.strategy;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import de.openhpi.capstone1.game.model.AlingedFigures;
 import de.openhpi.capstone1.game.model.Ball;
+import de.openhpi.capstone1.game.model.Drawable;
 import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.PlayGround;
 import de.openhpi.capstone1.game.model.Vector2d;
@@ -13,7 +13,7 @@ import de.openhpi.capstone1.game.model.PlayGround.BORDER_TYPE;
 public class PlayGroundResolutionStrategy implements ResolutionStrategy {
 
 	@Override
-	public void handleCollision(AlingedFigures obs, Ball ball) {
+	public void handleCollision(Drawable obs, Ball ball) {
 		// Strategy for a PlayGround
 		PlayGround playGround = (PlayGround) obs;
 		Map<BORDER_LOC, BORDER_TYPE> borderMap = playGround.getBorderMap();

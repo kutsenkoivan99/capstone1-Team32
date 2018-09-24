@@ -8,7 +8,7 @@ import de.openhpi.capstone1.game.model.Obstacle;
 import processing.core.PApplet;
 
 /**
- * @author walter
+ * @author 
  *
  */
 public class KeyboardPaddleController implements PAppletController {

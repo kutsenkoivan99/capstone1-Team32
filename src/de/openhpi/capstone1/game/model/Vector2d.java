@@ -3,7 +3,7 @@ package de.openhpi.capstone1.game.model;
 /**This class is used to specify 2 dimensional vectors for graphics processing
  * the operations are written with a graphical window in mind, that has its origin (0,0) in the top left corner and 
  * positive y values are in the direction down. To be compatible with the Processing library, the values are defined as float.
- * @author walter
+ * @author
  *
  */
 public class Vector2d {

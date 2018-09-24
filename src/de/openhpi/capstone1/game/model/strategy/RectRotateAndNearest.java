@@ -1,14 +1,14 @@
 package de.openhpi.capstone1.game.model.strategy;
 
-import de.openhpi.capstone1.game.model.AlingedFigures;
 import de.openhpi.capstone1.game.model.Ball;
+import de.openhpi.capstone1.game.model.Drawable;
 import de.openhpi.capstone1.game.model.Vector2d;
 import de.openhpi.capstone1.game.model.Rectangle;
 
 public class RectRotateAndNearest implements DetectionStrategy {
 
 	@Override
-	public boolean detectCollision(AlingedFigures obs, Ball ball) {
+	public boolean detectCollision(Drawable obs, Ball ball) {
 		Rectangle rect = (Rectangle) obs;
 		// change Coordinate system to get the center of the rectangle as Origin 0,0
 		Vector2d transformedBallPos = Vector2d.sub(ball.getPosition(), rect.getCenter());

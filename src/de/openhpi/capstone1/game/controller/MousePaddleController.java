@@ -7,7 +7,7 @@ import de.openhpi.capstone1.game.model.MousePaddle;
 import processing.core.PApplet;
 
 /**
- * @author walter
+ * @author 
  *
  */
 public class MousePaddleController implements PAppletController {

@@ -6,7 +6,7 @@ import java.util.Random;
 
 import de.openhpi.capstone1.game.controller.KeyboardController;
 
-public class PongBall extends Ball implements Drawable, Observer {
+public class PongBall extends Ball implements  Observer {
 
 	private char[] keyMap;
 

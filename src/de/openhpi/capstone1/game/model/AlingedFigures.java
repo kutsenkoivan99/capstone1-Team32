@@ -1,7 +1,5 @@
 package de.openhpi.capstone1.game.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 
 import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
@@ -17,8 +15,6 @@ public abstract class AlingedFigures extends Observable implements Drawable {
 	protected ResolutionStrategy resolutionStrategy = null;
 	protected float angle = 0; // in degrees 0.. 360 , clockwise
 	protected boolean isVisible = true; // by default new objects are visible
-	protected List<Drawable> children = new ArrayList<Drawable>();
-
 	public AlingedFigures() {
 		super();
 	}

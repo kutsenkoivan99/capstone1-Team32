@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import de.openhpi.capstone1.game.controller.KeyboardController;
 
-public class KeyboardPaddle extends Rectangle implements Drawable, Observer {
+public class KeyboardPaddle extends Rectangle implements  Observer {
 	char[] keyMap ;
 	int LEFT_FAST=0;
 	int LEFT_SLOW=1;

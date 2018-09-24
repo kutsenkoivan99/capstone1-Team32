@@ -3,14 +3,14 @@
  */
 package de.openhpi.capstone1.game.model.strategy;
 
-import de.openhpi.capstone1.game.model.AlingedFigures;
 import de.openhpi.capstone1.game.model.Ball;
+import de.openhpi.capstone1.game.model.Drawable;
 
 /**
- * @author walter
+ * @author
  *
  */
 public interface ResolutionStrategy {
-	public void handleCollision(AlingedFigures obs, Ball ball);
+	public void handleCollision(Drawable obs, Ball ball);
 
 }
