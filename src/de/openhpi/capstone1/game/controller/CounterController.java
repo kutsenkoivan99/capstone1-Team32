@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import de.openhpi.capstone1.game.controller.KeyboardController.KeyEvent;
-import de.openhpi.capstone1.game.model.AlingedFigures.KillEvent;
+import de.openhpi.capstone1.game.model.AlingedFigures.EdgeEvent;
 import de.openhpi.capstone1.game.model.Drawable.DrawEdges;
 import de.openhpi.capstone1.game.model.Obstacle.ObstacleEvent;
 
@@ -33,9 +33,9 @@ public class CounterController extends Observable implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// handle different Events
-		if (arg instanceof KillEvent) {
+		if (arg instanceof EdgeEvent) {
 
-			KillEvent ki = (KillEvent) arg;
+			EdgeEvent ki = (EdgeEvent) arg;
 			setChanged();
 			notifyObservers(new CounterEvent(Operation.INCREASE, 1, ki.edge)); 
 		} else if (arg instanceof KeyEvent) {

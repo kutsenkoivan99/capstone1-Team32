@@ -5,7 +5,7 @@ import de.openhpi.capstone1.game.model.Drawable;
 import de.openhpi.capstone1.game.model.Vector2d;
 import de.openhpi.capstone1.game.model.Rectangle;
 
-public class RectReflect implements ResolutionStrategy {
+public class RectReflectResolutionStrategy implements ResolutionStrategy {
 
 	@Override
 	public void handleCollision(Drawable obstacle, Ball ball) {

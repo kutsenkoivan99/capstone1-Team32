@@ -5,7 +5,7 @@ import de.openhpi.capstone1.game.model.Drawable;
 import de.openhpi.capstone1.game.model.Vector2d;
 import de.openhpi.capstone1.game.model.Rectangle;
 
-public class RectRotateAndNearest implements DetectionStrategy {
+public class RectRotateAndNearestDetectionStrategy implements DetectionStrategy {
 
 	@Override
 	public boolean detectCollision(Drawable obs, Ball ball) {
