@@ -2,11 +2,10 @@ package de.openhpi.capstone1.game.model;
 
 import processing.core.PApplet;
 
-public class Rectangle extends Obstacle implements Drawable {
+public class Rectangle extends Obstacle {
 
 	public float ySize;
 	public float xSize;
-
 	public Rectangle(float x, float y, float xSize, float ySize) {
 		position = new Vector2d(x, y);
 		this.xSize = xSize;
@@ -16,7 +15,8 @@ public class Rectangle extends Obstacle implements Drawable {
 
 	@Override
 	public void draw(PApplet p) {
-		if (hasCollision()) {
+		if (invert > 0) {
+			invert--;
 			p.fill((-color) - 1);
 		} else {
 			p.fill(color);

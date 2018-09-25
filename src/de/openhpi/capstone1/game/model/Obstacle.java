@@ -1,11 +1,9 @@
 package de.openhpi.capstone1.game.model;
 
-import de.openhpi.capstone1.game.model.AlingedFigures.KillEvent;
-import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
-
-public abstract class Obstacle extends AlingedFigures implements Drawable {
+public abstract class Obstacle extends AlingedFigures {
 	protected Vector2d velocity;
 	private boolean hasCollision = false;
+	protected int invert =0;
 	
 	public class ObstacleEvent {
 		public int value;
@@ -75,6 +73,7 @@ public abstract class Obstacle extends AlingedFigures implements Drawable {
 	 */
 	public void setCollision() {
 		hasCollision = true ;
+		invert=10;
 	}
 	
 	/**Clears the collision flag to indicate, that there is currently no collision. This should be done 

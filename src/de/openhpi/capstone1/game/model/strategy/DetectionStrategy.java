@@ -3,14 +3,14 @@
  */
 package de.openhpi.capstone1.game.model.strategy;
 
-import de.openhpi.capstone1.game.model.AlingedFigures;
 import de.openhpi.capstone1.game.model.Ball;
+import de.openhpi.capstone1.game.model.Drawable;
 
 /**
- * @author walter
+ * @author 
  *
  */
 public interface DetectionStrategy {
-	public boolean detectCollision(AlingedFigures obs, Ball ball);
+	public boolean detectCollision(Drawable obs, Ball ball);
 
 }

@@ -2,7 +2,7 @@ package de.openhpi.capstone1.game.model;
 
 import processing.core.PApplet;
 
-public class Ball extends Obstacle implements Drawable {
+public class Ball extends Obstacle  {
 	public float radius;
 
 	public Ball(float x, float y, float radius) {

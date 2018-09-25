@@ -1,15 +1,14 @@
 package de.openhpi.capstone1.game.model.strategy;
 
-import de.openhpi.capstone1.game.model.AlingedFigures;
 import de.openhpi.capstone1.game.model.Ball;
+import de.openhpi.capstone1.game.model.Drawable;
 import de.openhpi.capstone1.game.model.PlayGround;
-import de.openhpi.capstone1.game.model.Rectangle;
 import de.openhpi.capstone1.game.model.Vector2d;
 
 public class PlayGroundDetectStrategy implements DetectionStrategy {
 
 	@Override
-	public boolean detectCollision(AlingedFigures obs, Ball ball) {
+	public boolean detectCollision(Drawable obs, Ball ball) {
 		// Strategy for a PlayGround
 		PlayGround playGround = (PlayGround) obs;
 

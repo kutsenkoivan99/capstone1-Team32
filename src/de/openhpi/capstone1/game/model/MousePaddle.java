@@ -2,7 +2,7 @@ package de.openhpi.capstone1.game.model;
 
 import processing.core.PApplet;
 
-public class MousePaddle extends Rectangle implements Drawable {
+public class MousePaddle extends Rectangle {
 
 	public MousePaddle(float x, float y, float xSize, float ySize) {
 		super(x, y, xSize, ySize);

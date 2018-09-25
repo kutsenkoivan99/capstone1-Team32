@@ -3,11 +3,11 @@
  */
 package de.openhpi.capstone1.game.model.strategy;
 
-import de.openhpi.capstone1.game.model.AlingedFigures;
 import de.openhpi.capstone1.game.model.Ball;
+import de.openhpi.capstone1.game.model.Drawable;
 
 /**
- * @author walter
+ * @author 
  *
  */
 public class DoNothingStrategy implements DetectionStrategy, ResolutionStrategy {
@@ -16,7 +16,7 @@ public class DoNothingStrategy implements DetectionStrategy, ResolutionStrategy 
 	 * @see de.openhpi.capstone1.game.model.strategy.ResolutionStrategy#handleCollision(de.openhpi.capstone1.game.model.Obstacle, de.openhpi.capstone1.game.model.Ball)
 	 */
 	@Override
-	public void handleCollision(AlingedFigures obs, Ball ball) {
+	public void handleCollision(Drawable obs, Ball ball) {
 		
 	}
 
@@ -24,7 +24,7 @@ public class DoNothingStrategy implements DetectionStrategy, ResolutionStrategy 
 	 * @see de.openhpi.capstone1.game.model.strategy.DetectionStrategy#detectCollision(de.openhpi.capstone1.game.model.Obstacle, de.openhpi.capstone1.game.model.Ball)
 	 */
 	@Override
-	public boolean detectCollision(AlingedFigures obs, Ball ball) {
+	public boolean detectCollision(Drawable obs, Ball ball) {
 		return false;
 	}
 

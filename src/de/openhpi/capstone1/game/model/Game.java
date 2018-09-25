@@ -6,18 +6,15 @@ import java.util.Observer;
 import de.openhpi.capstone1.game.controller.CounterController;
 import de.openhpi.capstone1.game.controller.KeyboardController;
 import de.openhpi.capstone1.game.controller.MousePaddleController;
-import de.openhpi.capstone1.game.controller.CounterController.CounterEvent;
-import de.openhpi.capstone1.game.controller.CounterController.Operation;
 import de.openhpi.capstone1.game.controller.KeyboardController.KeyEvent;
-import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
-import de.openhpi.capstone1.game.model.PlayGround.BORDER_TYPE;
+import de.openhpi.capstone1.game.model.PlayGround.EdgeType;
 import de.openhpi.capstone1.game.model.strategy.PlayGroundDetectStrategy;
 import de.openhpi.capstone1.game.model.strategy.PlayGroundResolutionStrategy;
-import de.openhpi.capstone1.game.model.strategy.RectReflect;
-import de.openhpi.capstone1.game.model.strategy.RectRotateAndNearest;
+import de.openhpi.capstone1.game.model.strategy.RectReflectResolutionStrategy;
+import de.openhpi.capstone1.game.model.strategy.RectRotateAndNearestDetectionStrategy;
 import processing.core.PApplet;
 
-public class Game extends AlingedFigures implements Drawable, Observer {
+public class Game extends AlingedFigures implements  Observer {
 	
 	KeyboardController kController;
 	char[] topKeys = {'k','l','ö','ä','p','o'};
@@ -27,9 +24,9 @@ public class Game extends AlingedFigures implements Drawable, Observer {
 	char[] playerKeys = {'1','2'};
 	CounterController cController;
 	Counter counterTop;
-	BORDER_LOC[] borderListTop = { BORDER_LOC.TOP, BORDER_LOC.ALL};
+	DrawEdges[] borderListTop = { DrawEdges.TOP};
 	Counter counterBottom;
-	BORDER_LOC[] borderListBottom = { BORDER_LOC.BOTTOM };
+	DrawEdges[] borderListBottom = { DrawEdges.BOTTOM };
 	MousePaddleController mPaddleController;
 	
 	KeyboardPaddle kPaddleTop;
@@ -69,18 +66,18 @@ public class Game extends AlingedFigures implements Drawable, Observer {
 	
 	public void build(int players) {
 		mPaddle.setColor(255, 255, 0);
-		mPaddle.setDetectionStrategy(new RectRotateAndNearest());
-		mPaddle.setResolutionStrategy(new RectReflect());
-		kPaddleTop.setDetectionStrategy(new RectRotateAndNearest());
-		kPaddleTop.setResolutionStrategy(new RectReflect());
-		kPaddleBottom.setDetectionStrategy(new RectRotateAndNearest());
-		kPaddleBottom.setResolutionStrategy(new RectReflect());
-		target.setDetectionStrategy(new RectRotateAndNearest());
-		target.setResolutionStrategy(new RectReflect());
-		block1.setDetectionStrategy(new RectRotateAndNearest());
-		block1.setResolutionStrategy(new RectReflect());
-		block2.setDetectionStrategy(new RectRotateAndNearest());
-		block2.setResolutionStrategy(new RectReflect());
+		mPaddle.setDetectionStrategy(new RectRotateAndNearestDetectionStrategy());
+		mPaddle.setResolutionStrategy(new RectReflectResolutionStrategy());
+		kPaddleTop.setDetectionStrategy(new RectRotateAndNearestDetectionStrategy());
+		kPaddleTop.setResolutionStrategy(new RectReflectResolutionStrategy());
+		kPaddleBottom.setDetectionStrategy(new RectRotateAndNearestDetectionStrategy());
+		kPaddleBottom.setResolutionStrategy(new RectReflectResolutionStrategy());
+		target.setDetectionStrategy(new RectRotateAndNearestDetectionStrategy());
+		target.setResolutionStrategy(new RectReflectResolutionStrategy());
+		block1.setDetectionStrategy(new RectRotateAndNearestDetectionStrategy());
+		block1.setResolutionStrategy(new RectReflectResolutionStrategy());
+		block2.setDetectionStrategy(new RectRotateAndNearestDetectionStrategy());
+		block2.setResolutionStrategy(new RectReflectResolutionStrategy());
 		
 		ball.setColor(0, 255, 255);
 		ball.setVelocity(0f, 2f);
@@ -111,7 +108,7 @@ public class Game extends AlingedFigures implements Drawable, Observer {
 	void switchGame(int players) {
 		switch (players) {
 		case 1:
-			playGround.getBorderMap().put(BORDER_LOC.TOP, BORDER_TYPE.REFLECT);
+			playGround.getBorderMap().put(DrawEdges.TOP, EdgeType.REFLECT);
 			playGround.addChild(mPaddle);
 			playGround.addChild(target);
 			playGround.addChild(block1);
@@ -123,7 +120,7 @@ public class Game extends AlingedFigures implements Drawable, Observer {
 			playGround.removeChild(kPaddleBottom);
 			break;
 		case 2:
-			playGround.getBorderMap().put(BORDER_LOC.TOP, BORDER_TYPE.KILL);
+			playGround.getBorderMap().put(DrawEdges.TOP, EdgeType.KILL);
 
 	        playGround.addChild(kPaddleTop);
 	        playGround.addChild(kPaddleBottom);

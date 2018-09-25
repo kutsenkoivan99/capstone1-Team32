@@ -4,8 +4,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import de.openhpi.capstone1.game.controller.KeyboardController.KeyEvent;
-import de.openhpi.capstone1.game.model.AlingedFigures.KillEvent;
-import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
+import de.openhpi.capstone1.game.model.AlingedFigures.EdgeEvent;
+import de.openhpi.capstone1.game.model.Drawable.DrawEdges;
 import de.openhpi.capstone1.game.model.Obstacle.ObstacleEvent;
 
 public class CounterController extends Observable implements Observer {
@@ -17,9 +17,9 @@ public class CounterController extends Observable implements Observer {
 
 		public int value;
 		public Operation operation;
-		public BORDER_LOC edge;
+		public DrawEdges edge;
 
-		CounterEvent(Operation op, int value, BORDER_LOC edge) {
+		CounterEvent(Operation op, int value, DrawEdges edge) {
 			this.operation = op;
 			this.value = value;
 			this.edge = edge;
@@ -33,9 +33,9 @@ public class CounterController extends Observable implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// handle different Events
-		if (arg instanceof KillEvent) {
+		if (arg instanceof EdgeEvent) {
 
-			KillEvent ki = (KillEvent) arg;
+			EdgeEvent ki = (EdgeEvent) arg;
 			setChanged();
 			notifyObservers(new CounterEvent(Operation.INCREASE, 1, ki.edge)); 
 		} else if (arg instanceof KeyEvent) {
@@ -46,7 +46,7 @@ public class CounterController extends Observable implements Observer {
 			ObstacleEvent obstacleEvent = (ObstacleEvent) arg;
 			setChanged();
 			
-			notifyObservers(new CounterEvent(Operation.INCREASE, obstacleEvent.value, BORDER_LOC.ALL)); 
+			notifyObservers(new CounterEvent(Operation.INCREASE, obstacleEvent.value, DrawEdges.TOP)); 
 		} else {
 			System.out.println("can not handle event of type: " + arg.getClass().getName());
 		}

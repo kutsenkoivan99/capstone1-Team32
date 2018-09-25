@@ -1,10 +1,7 @@
 package de.openhpi.capstone1.game.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 
-import de.openhpi.capstone1.game.model.Drawable.BORDER_LOC;
 import de.openhpi.capstone1.game.model.strategy.DetectionStrategy;
 import de.openhpi.capstone1.game.model.strategy.ResolutionStrategy;
 import processing.core.PApplet;
@@ -17,22 +14,20 @@ public abstract class AlingedFigures extends Observable implements Drawable {
 	protected ResolutionStrategy resolutionStrategy = null;
 	protected float angle = 0; // in degrees 0.. 360 , clockwise
 	protected boolean isVisible = true; // by default new objects are visible
-	protected List<Drawable> children = new ArrayList<Drawable>();
-
 	public AlingedFigures() {
 		super();
 	}
 
-	public class KillEvent {
-		public BORDER_LOC edge;
+	public class EdgeEvent {
+		public DrawEdges edge;
 
-		public KillEvent(BORDER_LOC edge) {
+		public EdgeEvent(DrawEdges edge) {
 			this.edge = edge;
 		}
 	}
 
-	public KillEvent buildKillEvent(BORDER_LOC edge) {
-		return new KillEvent(edge);
+	public EdgeEvent buildEdgeEvent(DrawEdges edge) {
+		return new EdgeEvent(edge);
 	}
 
 	@Override
