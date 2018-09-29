@@ -10,7 +10,7 @@ import de.openhpi.capstone1.game.model.Obstacle.ObstacleEvent;
 
 public class CounterController extends Observable implements Observer {
 	public static enum Operation {
-		INCREASE, DECREASE, RESET
+		INCREASE, DECREASE, RESET 
 	};
 
 	public class CounterEvent {
